@@ -365,20 +365,20 @@ thead th { font-weight: 500; color: var(--md-on-surface-variant); border-bottom-
   background: transparent; font: inherit; color: var(--md-on-surface);
 }
 .field textarea { min-height: 128px; resize: vertical; }
-.field label {
+.field > label {
   position: absolute; left: 12px; top: 16px; padding: 0 4px; background: var(--md-surface);
   color: var(--md-on-surface-variant); pointer-events: none; transition: all .15s ease;
 }
 .field input:focus, .field textarea:focus { outline: none; border: 2px solid var(--md-primary); padding: 15px; }
-.field input:focus + label, .field textarea:focus + label,
-.field input:not(:placeholder-shown) + label, .field textarea:not(:placeholder-shown) + label {
+.field > input:focus + label, .field > textarea:focus + label,
+.field > input:not(:placeholder-shown) + label, .field > textarea:not(:placeholder-shown) + label {
   top: -9px; font-size: .75rem; color: var(--md-primary);
 }
 .field [aria-invalid="true"] { border: 2px solid var(--md-error); }
 .field .error { color: var(--md-error); font-size: .75rem; margin: 4px 16px 0; }
 .field .error:empty { display: none; }
 .check { display: flex; align-items: flex-start; gap: 12px; }
-.field .check label { position: static; padding: 0; background: none; pointer-events: auto; color: var(--md-on-surface); }
+.check label { color: var(--md-on-surface); }
 .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--md-primary); }
 .form-status { padding: 12px 16px; border-radius: var(--r-s); background: var(--md-primary-container); color: var(--md-on-primary-container); }
 .form-status:empty { display: none; }
