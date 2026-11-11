@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 import { logo } from "./illustrations.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const SITE = "https://selinah3005.github.io/livigno/"; // change if the site is published elsewhere
+const SITE = "https://livigno-explorers.github.io/livigno/"; // change if the site is published elsewhere
 const AUTHORS = ["Magadeline Ndlovu", "Sobin Karakkunnummel", "Gayathri Devi Shalini Dileep", "Monika Tasheva"];
 
 // ---------- icons (simple, drawn by us) ----------

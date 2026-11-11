@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://selinah3005.github.io/livigno/sitemap.xml
+Sitemap: https://livigno-explorers.github.io/livigno/sitemap.xml

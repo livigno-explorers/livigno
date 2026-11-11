@@ -78,4 +78,4 @@ To change the shared header or footer, edit `src/build.mjs` and run `node src/bu
 - Events and trails are **sample data** and are marked as such on the pages.
 - No ski pass prices are copied, because they change every season; the site links to the official site.
 - Photos: save them in `img/photos/` with the exact file names from `data/photos.json` (about 1600 px wide, under 300 KB). Fill in author, licence and link in `data/photos.json` and run `node src/build.mjs` – the credits table on `sources.html` updates itself. Until then, labelled placeholder drawings are shown.
-- If the site is published somewhere other than `https://selinah3005.github.io/livigno/`, change `SITE` in `src/build.mjs` and rebuild (used for canonical links and the sitemap).
+- If the site is published somewhere other than `https://livigno-explorers.github.io/livigno/`, change `SITE` in `src/build.mjs` and rebuild (used for canonical links and the sitemap).
