@@ -1,0 +1,8 @@
+[
+  {"id": "lago-del-gallo", "name": "Lago del Gallo loop", "type": "hiking", "level": "easy", "image": "lake", "alt": "Lake below green mountains", "text": "A walk near the lake at the end of the valley."},
+  {"id": "valle-federia", "name": "Valle Federia walk", "type": "hiking", "level": "easy", "image": "hiking", "alt": "Quiet side valley with meadows", "text": "A quiet side valley with meadows and old huts."},
+  {"id": "high-meadows", "name": "High meadows trail", "type": "hiking", "level": "medium", "image": "village", "alt": "Path above the village", "text": "A longer walk with views over the village."},
+  {"id": "passo-eira", "name": "Passo d'Eira route", "type": "cycling", "level": "medium", "image": "road-cycling", "alt": "Road climbing to a mountain pass", "text": "A road climb to the pass above Livigno."},
+  {"id": "valley-cycle", "name": "Valley cycle path", "type": "cycling", "level": "easy", "image": "road-cycling", "alt": "Flat path along the valley", "text": "A flat ride along the valley floor."},
+  {"id": "mottolino-bike-park", "name": "Mottolino bike park", "type": "mtb", "level": "hard", "image": "mtb", "alt": "Mountain bike trail on a steep slope", "text": "Downhill and flow trails for experienced riders."}
+]

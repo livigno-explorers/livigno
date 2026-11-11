@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Winter in Livigno – skiing, snowboarding and snow report</title>
+  <meta name="description" content="Skiing and snowboarding in Livigno: current weather and snow, the Carosello 3000 and Mottolino ski areas, ski schools and ski pass information.">
+  <meta name="author" content="Magadeline Ndlovu, Sobin Karakkunnummel, Gayathri Devi Shalini Dileep, Monika Tasheva">
+  <meta name="theme-color" content="#2f5f7d">
+  <link rel="canonical" href="https://selinah3005.github.io/livigno/winter.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Winter in Livigno – skiing, snowboarding and snow report">
+  <meta property="og:description" content="Skiing and snowboarding in Livigno: current weather and snow, the Carosello 3000 and Mottolino ski areas, ski schools and ski pass information.">
+  <meta property="og:url" content="https://selinah3005.github.io/livigno/winter.html">
+  <meta property="og:image" content="https://selinah3005.github.io/livigno/img/photos/hero-summer.jpg">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/weather.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <p class="notice" role="note">Student project – for teaching purposes only · CZU Prague · not an official website of Livigno</p>
+    <div class="app-bar">
+      <a class="brand" href="index.html"><img src="img/logo.svg" alt="" width="36" height="36">Livigno</a>
+      <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg></span><span class="short">Home</span><span class="full">Home</span></a></li>
+        <li><a href="summer.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M11 1h2v4h-2zM11 19h2v4h-2zM1 11h4v2H1zM19 11h4v2h-4zM4.2 5.6l1.4-1.4 2.8 2.8-1.4 1.4zM15.6 17l1.4-1.4 2.8 2.8-1.4 1.4zM4.2 18.4 7 15.6 8.4 17l-2.8 2.8zM15.6 7 18.4 4.2l1.4 1.4L17 8.4z"/></svg></span><span class="short">Summer</span><span class="full">Summer</span></a></li>
+        <li><a href="winter.html" aria-current="page"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 1h2v22h-2z"/><path d="M2.3 6.5l1-1.7 18.4 12.7-1 1.7z"/><path d="M20.7 4.8l1 1.7L3.3 19.2l-1-1.7z"/><path d="M8.5 2.5 12 6l3.5-3.5 1.4 1.4L12 8.8 7.1 3.9zM8.5 21.5 12 18l3.5 3.5 1.4-1.4L12 15.2l-4.9 4.9z"/></svg></span><span class="short">Winter</span><span class="full">Winter</span></a></li>
+        <li><a href="food.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v7a2 2 0 0 1-1 1.7V22H6V10.7A2 2 0 0 1 5 9V2h2v6h0zM3 2h2v7H3zM9 2h2v7H9zM16 2c2.8 0 4 3 4 7 0 2-1 3-2 3.5V22h-2z"/></svg></span><span class="short">Food</span><span class="full">Food &amp; local</span></a></li>
+        <li><a href="plan.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 9 2 3 4v18l6-2 6 2 6-2V2zM9 4.2l6 2v13.6l-6-2z"/></svg></span><span class="short">Plan</span><span class="full">Plan your visit</span></a></li>
+      </ul>
+    </nav>
+      <span class="spacer"></span>
+      <form class="search" role="search" action="summer.html" method="get">
+        <label class="visually-hidden" for="site-search">Search trails</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
+        <input id="site-search" name="q" type="search" placeholder="Search trails">
+        <button type="submit" class="visually-hidden">Search</button>
+      </form>
+      <a class="icon-btn search-toggle" href="summer.html#trail-search" aria-label="Search trails"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
+      <a class="lang" href="winter.html" hreflang="en">EN<span class="visually-hidden"> – English (current language)</span></a>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="photo-hero" aria-labelledby="page-title">
+      <img src="img/photos/hero-winter.jpg" alt="Livigno valley covered in snow" width="1600" height="900" fetchpriority="high" decoding="async">
+      <div class="hero-inner">
+        <p class="eyebrow">Winter</p>
+        <h1 id="page-title">Winter in Livigno</h1>
+        <p class="hero-lead">Long winters, two ski areas and a snow park. Check the conditions, compare the options and get your ski pass.</p>
+        <div class="segmented on-dark" role="group" aria-label="Winter sport" data-sport-switch>
+          <button type="button" aria-pressed="true" data-sport="ski">Skiing</button>
+          <button type="button" aria-pressed="false" data-sport="board">Snowboard</button>
+          <button type="button" aria-pressed="false" data-sport="xc">Cross-country</button>
+        </div>
+        <p class="status" aria-live="polite" data-sport-text>Skiing: slopes for beginners and experts in both ski areas.</p>
+      </div>
+    </section>
+    <div class="page">
+
+
+    <div class="split">
+      <section aria-labelledby="snow-title">
+        <h2 id="snow-title">Weather and snow now</h2>
+        <div class="fact weather" data-weather>
+          <dl>
+            <dt>Temperature</dt><dd data-w="temperature">–</dd>
+            <dt>Snow depth</dt><dd data-w="snow">–</dd>
+            <dt>New snow (last hour)</dt><dd data-w="snowfall">–</dd>
+            <dt>Wind</dt><dd data-w="wind">–</dd>
+          </dl>
+          <p class="small" role="status" aria-live="polite" data-w="updated">Loading live data…</p>
+        </div>
+        <p class="small">Live data from the Open-Meteo weather API for the Livigno valley. Slope conditions can differ – always check the official ski area information.</p>
+      </section>
+
+      <section aria-labelledby="pass-title">
+        <h2 id="pass-title">Ski pass options</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Typical ski pass types</caption>
+            <thead><tr><th scope="col">Pass</th><th scope="col">Good for</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1 day</th><td>A first try or a short visit</td></tr>
+              <tr><th scope="row">Multi-day</th><td>A ski week, usually cheaper per day</td></tr>
+              <tr><th scope="row">Season</th><td>Locals and people who come often</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small">Prices change every season, so we link to the official ski pass information instead of copying prices.</p>
+      </section>
+    </div>
+
+    <section aria-labelledby="areas-title">
+      <h2 id="areas-title">Ski areas and schools</h2>
+      <div class="grid grid-3">
+
+        <article class="card card-elevated">
+          <img src="img/photos/ski.jpg" alt="Skier on a wide slope" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h3>Carosello 3000</h3>
+            <p class="meta">Ski area</p>
+            <p>One of the two big ski areas of Livigno.</p>
+
+          </div>
+        </article>
+
+        <article class="card card-elevated">
+          <img src="img/photos/snowpark.jpg" alt="Snowboarder in a snow park" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h3>Mottolino</h3>
+            <p class="meta">Ski area · snow park</p>
+            <p>The second ski area, with a snow park for freestyle.</p>
+
+          </div>
+        </article>
+
+        <article class="card card-elevated">
+          <img src="img/photos/ski-school.jpg" alt="Training slope with small flags" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h3>Ski and snowboard schools</h3>
+            <p class="meta">Lessons for all levels</p>
+            <p>Group and private lessons for children and adults.</p>
+
+          </div>
+        </article>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-filled" href="https://www.livigno.eu/en" target="_blank" rel="noopener">Buy ski pass <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="visually-hidden"> (opens in a new tab)</span></a>
+        <a class="btn btn-outlined" href="https://www.livigno.eu/en" target="_blank" rel="noopener">Webcams <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="visually-hidden"> (opens in a new tab)</span></a>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page">
+      <div>
+        <h2>Livigno – mountain adventure all year round</h2>
+        <p><strong>Authors:</strong> Magadeline Ndlovu, Sobin Karakkunnummel, Gayathri Devi Shalini Dileep, Monika Tasheva</p>
+        <p>Student project for the course Internet Technologies – Client Side, Czech University of Life Sciences Prague, 2026. For teaching purposes only.</p>
+      </div>
+      <div class="h-card">
+        <h2>Tourist information</h2>
+        <p><a class="p-name u-url" href="https://www.livigno.eu/en">APT Livigno</a> (official site)</p>
+        <p class="p-adr h-adr"><span class="p-locality">Livigno</span>, <span class="p-region">Lombardy</span>, <span class="p-country-name">Italy</span></p>
+        <p class="p-geo h-geo">Coordinates: <span class="p-latitude">46.538</span>, <span class="p-longitude">10.135</span></p>
+      </div>
+      <div>
+        <h2>About this site</h2>
+        <ul>
+          <li><a href="sources.html">Sources &amp; image credits</a></li>
+          <li><a href="plan.html#contact">Contact form</a></li>
+          <li><a href="sitemap.xml">Sitemap (XML)</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

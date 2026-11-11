@@ -1,0 +1,17 @@
+[
+  {"file": "hero-summer", "shows": "Livigno valley in summer (big photo on the Home page)", "search": "Livigno summer", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "hero-winter", "shows": "Livigno in winter with snow (Winter page)", "search": "Livigno winter", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "lake", "shows": "Lago di Livigno – the lake (Summer page)", "search": "Lago di Livigno", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "hiking", "shows": "Hiking path or hikers in the mountains", "search": "Livigno hiking", "author": "Dmitrii Filatov", "licence": "Unsplash License", "licenceUrl": "https://unsplash.com/license", "source": "https://unsplash.com/photos/q9AyBmCo1rU"},
+  {"file": "road-cycling", "shows": "Road to a mountain pass (cycling)", "search": "Passo d'Eira", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "mtb", "shows": "Mountain biking", "search": "Livigno mountain bike", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "ski", "shows": "Ski slope or skier", "search": "Carosello 3000 Livigno", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "snowpark", "shows": "Snowboard or snow park", "search": "Mottolino Livigno", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "ski-school", "shows": "Ski lesson or beginner slope", "search": "ski school children slope", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "pizzoccheri", "shows": "Pizzoccheri (buckwheat pasta dish)", "search": "Pizzoccheri", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "sciatt", "shows": "Sciatt (cheese fritters)", "search": "Sciatt", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "bresaola", "shows": "Bresaola (cured beef)", "search": "Bresaola della Valtellina", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "cheese", "shows": "Mountain cheese", "search": "Bitto cheese", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "village", "shows": "Livigno village / houses", "search": "Livigno village", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "hut", "shows": "Mountain hut (rifugio)", "search": "rifugio Livigno", "author": "", "licence": "", "licenceUrl": "", "source": ""}
+]

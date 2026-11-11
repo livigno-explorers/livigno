@@ -1,0 +1,8 @@
+[
+  { "id": "ski-opening", "name": "Opening of the ski season", "start": "2026-11-28", "location": "Livigno ski areas", "summary": "Sample event: first day of the winter season on the slopes.", "season": "winter" },
+  { "id": "christmas-market", "name": "Christmas in the village", "start": "2026-12-19", "location": "Village centre", "summary": "Sample event: lights, music and local food in the centre.", "season": "winter" },
+  { "id": "family-snow-day", "name": "Family snow day", "start": "2027-01-23", "location": "Village centre", "summary": "Sample event: games in the snow for children and parents.", "season": "winter" },
+  { "id": "spring-ski", "name": "Spring skiing weekend", "start": "2027-04-10", "location": "Livigno ski areas", "summary": "Sample event: sunny slopes at the end of the season.", "season": "winter" },
+  { "id": "trail-day", "name": "Summer trail day", "start": "2027-07-03", "location": "Lago di Livigno", "summary": "Sample event: guided walks for all levels.", "season": "summer" },
+  { "id": "bike-weekend", "name": "Mountain bike weekend", "start": "2027-08-21", "location": "Bike park", "summary": "Sample event: rides and tips from local guides.", "season": "summer" }
+]
