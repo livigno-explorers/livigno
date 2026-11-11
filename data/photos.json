@@ -13,5 +13,6 @@
   {"file": "bresaola", "shows": "Bresaola (cured beef)", "search": "Bresaola della Valtellina", "author": "", "licence": "", "licenceUrl": "", "source": ""},
   {"file": "cheese", "shows": "Mountain cheese", "search": "Bitto cheese", "author": "", "licence": "", "licenceUrl": "", "source": ""},
   {"file": "village", "shows": "Livigno village / houses", "search": "Livigno village", "author": "", "licence": "", "licenceUrl": "", "source": ""},
-  {"file": "hut", "shows": "Mountain hut (rifugio)", "search": "rifugio Livigno", "author": "", "licence": "", "licenceUrl": "", "source": ""}
+  {"file": "hut", "shows": "Mountain hut (rifugio)", "search": "rifugio Livigno", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "bakery", "shows": "Buckwheat bread (Food page, Bakery)", "search": "buckwheat bread", "author": "", "licence": "", "licenceUrl": "", "source": ""}
 ]

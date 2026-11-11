@@ -433,7 +433,7 @@ ${card({ variant: "outlined", image: "bresaola", alt: "Plate with thin slices of
       <ul class="list">
         <li>${photo("cheese", "", { w: 112, h: 112, cls: "lead-img" })}<div class="text"><p class="title">Dairy</p><p class="support">Fresh milk, mountain cheese and yoghurt from the valley.</p></div></li>
         <li>${photo("hiking", "", { w: 112, h: 112, cls: "lead-img" })}<div class="text"><p class="title">Honey and mountain herbs</p><p class="support">Products of the high alpine meadows.</p></div></li>
-        <li>${photo("village", "", { w: 112, h: 112, cls: "lead-img" })}<div class="text"><p class="title">Bakery</p><p class="support">Bread and sweets made with buckwheat and rye.</p></div></li>
+        <li>${photo("bakery", "", { w: 112, h: 112, cls: "lead-img" })}<div class="text"><p class="title">Bakery</p><p class="support">Bread and sweets made with buckwheat and rye.</p></div></li>
       </ul>
     </section>`,
 });
