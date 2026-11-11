@@ -446,7 +446,8 @@ pages["plan.html"] = layout({
   hero: banner({ image: "village", alt: "Livigno village with mountains behind", eyebrow: "Plan your visit", title: "Plan your visit",
     lead: "Everything you need before you travel: how to get to the valley, where to stay, what is on and who to ask." }),
   body: `
-    <section aria-label="Travel information">
+    <section aria-labelledby="info-title">
+      <h2 id="info-title" class="visually-hidden">Travel information</h2>
       <div class="tabs" role="tablist" aria-label="Plan your visit">
         <button type="button" role="tab" id="tab-travel" aria-controls="panel-travel" aria-selected="true">Getting there</button>
         <button type="button" role="tab" id="tab-stay" aria-controls="panel-stay" aria-selected="false" tabindex="-1">Where to stay</button>
