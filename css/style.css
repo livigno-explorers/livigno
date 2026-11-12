@@ -50,10 +50,15 @@ body {
   background: var(--md-surface);
 }
 
-/* Faint mountain photo behind every page (pre-lightened so all text keeps WCAG AA contrast). */
+/* Mountain photo behind every page. Text never sits on the photo directly:
+   every content section has a frosted white panel (88 % white keeps WCAG AA contrast over the darkest rock). */
 body::before {
   content: ""; position: fixed; inset: 0; z-index: -1;
-  background: var(--md-surface) url("../img/bg-mountains.jpg") center top / cover no-repeat;
+  background: var(--md-surface);
+}
+/* The photo is loaded only from tablet width up; on phones the panels cover almost all of it (faster pages). */
+@media (width >= 600px) {
+  body::before { background: var(--md-surface) url("../img/bg-mountains.jpg") center top / cover no-repeat; }
 }
 
 img, svg { display: block; max-width: 100%; height: auto; }
@@ -95,7 +100,7 @@ p { margin: 0 0 1em; }
   position: sticky; top: 0; z-index: 20;
 }
 .brand { display: flex; align-items: center; gap: 10px; color: var(--md-on-surface); text-decoration: none; font-size: 1.375rem; font-weight: 500; }
-.brand img { width: 36px; height: 36px; }
+.brand img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 0 2px #fff, 0 1px 4px rgb(0 0 0 / .25); }
 .app-bar .spacer { flex: 1; }
 
 .search { position: relative; display: none; }
@@ -460,3 +465,13 @@ thead th { font-weight: 500; color: var(--md-on-surface-variant); border-bottom-
 .js .no-js-only { display: none; }
 .js [data-tab-hidden] { display: none; }
 .no-js [role="tabpanel"] + [role="tabpanel"] { margin-top: 32px; }
+
+/* ---------- frosted panels on the photo background ---------- */
+.page > section:not(.stats, .band, .travel, .intro),
+.page > .split > section {
+  padding: 24px; border-radius: var(--r-xl);
+  background: rgb(255 255 255 / .88);
+  backdrop-filter: blur(6px);
+}
+.page > .split { gap: var(--gap); }
+.page > section.stats { background: none; }

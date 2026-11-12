@@ -72,7 +72,7 @@ ${extraHead}${scripts.map((s) => `  <script type="module" src="js/${s}"></script
   <header>
     <p class="notice" role="note">Student project – for teaching purposes only · CZU Prague · not an official website of Livigno</p>
     <div class="app-bar">
-      <a class="brand" href="index.html"><img src="img/logo.svg" alt="" width="36" height="36">Livigno</a>
+      <a class="brand" href="index.html"><img src="img/logo.jpg" alt="" width="40" height="40">Livigno</a>
       ${nav(file)}
       <span class="spacer"></span>
       <form class="search js-only" role="search" action="summer.html" method="get">
@@ -568,7 +568,7 @@ pages["sources.html"] = layout({
         <li>GOOGLE. <i>Material Design 3</i> [online]. [cit. 2026-11-08]. Available from: <a href="https://m3.material.io/">https://m3.material.io/</a></li>
       </ol>
       <h2>Photo credits</h2>
-      <p>Photos are used under their free licences (for example Creative Commons) and credited below. The icons and the logo were drawn by the authors.</p>
+      <p>Photos are used under their free licences (for example Creative Commons) and credited below. The icons were drawn by the authors; the logo is cut from the page background photo.</p>
       <section class="table-wrap" tabindex="0" aria-label="Photo credits table">
         <table>
           <caption>Photos used on this website</caption>
