@@ -42,6 +42,15 @@ ${PAGES.map(([file, full, short, ic]) => `        <li><a href="${file}"${file ==
     </nav>`;
 }
 
+// ---------- languages: English (default), Italian, German ----------
+const LANGS = ["en", "it", "de"];
+const LANG_NAMES = { en: "English", it: "Italiano", de: "Deutsch" };
+// index.html -> index-it.html; the English home page is the site root.
+const langFile = (file, lang) => (lang === "en" ? file : file.replace(/\.html$/, `-${lang}.html`));
+const pageUrl = (file, lang) => (lang === "en" && file === "index.html" ? "" : langFile(file, lang));
+const langSwitch = (file, current) => `<nav class="lang-switch" aria-label="Language">${LANGS.map((l) =>
+  `<a href="${langFile(file, l)}" hreflang="${l}" lang="${l}"${l === current ? ' aria-current="true"' : ""}>${l.toUpperCase()}<span class="visually-hidden"> ${LANG_NAMES[l]}</span></a>`).join("")}</nav>`;
+
 function layout({ file, title, description, body, hero = "", scripts = [], extraHead = "" }) {
   // Without JavaScript the tabs are hidden and every panel is shown, so each panel gets its tab's name as a heading.
   const tabNames = Object.fromEntries([...body.matchAll(/role="tab" id="(tab-[a-z]+)"[^>]*>([^<]+)</g)].map((m) => [m[1], m[2]]));
@@ -59,6 +68,8 @@ function layout({ file, title, description, body, hero = "", scripts = [], extra
   <meta name="author" content="${esc(AUTHORS.join(", "))}">
   <meta name="theme-color" content="#1f5f8b">
   <link rel="canonical" href="${canonical}">
+${LANGS.map((l) => `  <link rel="alternate" hreflang="${l}" href="${SITE}${pageUrl(file, l)}">`).join("\n")}
+  <link rel="alternate" hreflang="x-default" href="${SITE}${pageUrl(file, "en")}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="${esc(title)}">
   <meta property="og:description" content="${esc(description)}">
@@ -82,7 +93,7 @@ ${extraHead}${scripts.map((s) => `  <script type="module" src="js/${s}"></script
         <button type="submit" class="visually-hidden">Search</button>
       </form>
       <a class="icon-btn search-toggle js-only" href="summer.html#trail-search" aria-label="Search trails">${icon.search}</a>
-      <a class="lang" href="${file}" hreflang="en">EN<span class="visually-hidden"> – English (current language)</span></a>
+      ${langSwitch(file, "en")}
     </div>
   </header>
 
@@ -602,13 +613,82 @@ ${PAGES.map(([f, full]) => `        <li><div class="text"><p class="title"><a hr
 
 // ---------- write files ----------
 for (const [file, html] of Object.entries(pages)) fs.writeFileSync(path.join(ROOT, file), html.replace(/[ \t]+\n/g, "\n"));
+
+// ---------- translated versions (Italian, German) ----------
+// Every visible text and every alt / aria-label / placeholder / title / meta text is looked up in
+// src/i18n/pages.<lang>.json. The build stops if a text has no translation, so no page is left half in English.
+const KEEP = new Set(["Livigno", "EN", "IT", "DE", "English", "Italiano", "Deutsch", "APT Livigno", "Carosello 3000", "Mottolino",
+  "Pizzoccheri", "Sciatt", "Bresaola", "Lago di Livigno", "Dmitrii Filatov", "Unsplash License", "≈ 115 km",
+  "Livigno. In:", "Wikipedia: the free encyclopedia", "APT LIVIGNO.", "Winter Olympic Games Milano Cortina 2026", "OPEN-METEO.", "Free Weather API",
+  "OPENSTREETMAP CONTRIBUTORS.", "OpenStreetMap", "GOOGLE.", "Material Design 3", "website", "#1f5f8b", "width=device-width, initial-scale=1",
+  AUTHORS.join(", "), ...AUTHORS]);
+const LOCALE = { it: "it-IT", de: "de-DE" };
+const MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const PAGE_FILES = Object.keys(pages);
+const missing = new Set();
+
+function tr(text, dict, lang) {
+  const key = text.replace(/\s+/g, " ").trim();
+  if (!key || !/[A-Za-z]{2}/.test(key) || KEEP.has(key) || /^https?:/.test(key)) return null;
+  const date = key.match(/^(\d{1,2}) (\w+) (\d{4})$/);
+  if (date && MONTH_NAMES.includes(date[2])) {
+    return new Date(Date.UTC(+date[3], MONTH_NAMES.indexOf(date[2]), +date[1])).toLocaleDateString(LOCALE[lang], { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+  }
+  if (key in dict) return dict[key];
+  missing.add(`${lang}: ${key}`);
+  return null;
+}
+
+function translatePage(file, html, lang, dict) {
+  let inScript = false;
+  let inSvg = false;
+  let out = html.split(/(<[^>]+>)/).map((part) => {
+    if (part.startsWith("<")) {
+      if (/^<script\b/i.test(part)) inScript = true;
+      if (/^<\/script>/i.test(part)) inScript = false;
+      if (/^<svg\b/i.test(part)) inSvg = true;
+      if (/^<\/svg>/i.test(part)) inSvg = false;
+      return part.replace(/\b(alt|aria-label|placeholder|title|content)="([^"]*)"/g, (all, attr, value) => {
+        const t = tr(value, dict, lang);
+        return t == null ? all : `${attr}="${t}"`;
+      });
+    }
+    if (inScript || inSvg) return part;
+    const t = tr(part, dict, lang);
+    return t == null ? part : part.replace(/^(\s*)[\s\S]*?(\s*)$/, (all, a, b) => `${a}${t}${b}`);
+  }).join("");
+  const pagesRe = new RegExp(`(href|action)="(${PAGE_FILES.map((f) => f.replace(".html", "")).join("|")})\\.html(#[^"]*)?"`, "g");
+  out = out
+    .replace('<html lang="en"', `<html lang="${lang}"`)
+    .replace(/<nav class="lang-switch"[\s\S]*?<\/nav>/, "LANG_SWITCH")
+    .replace(pagesRe, (all, attr, name, hash = "") => `${attr}="${name}-${lang}.html${hash}"`)
+    .replace("LANG_SWITCH", langSwitch(file, lang).replace('aria-label="Language"', `aria-label="${dict.Language}"`))
+    .replace(`<link rel="canonical" href="${SITE}${pageUrl(file, "en")}">`, `<link rel="canonical" href="${SITE}${pageUrl(file, lang)}">`)
+    .replace(`<meta property="og:url" content="${SITE}${pageUrl(file, "en")}">`, `<meta property="og:url" content="${SITE}${pageUrl(file, lang)}">`);
+  return out;
+}
+
+for (const lang of ["it", "de"]) {
+  const dict = JSON.parse(fs.readFileSync(path.join(ROOT, "src", "i18n", `pages.${lang}.json`), "utf8"));
+  for (const [file, html] of Object.entries(pages)) {
+    fs.writeFileSync(path.join(ROOT, langFile(file, lang)), translatePage(file, html, lang, dict).replace(/[ \t]+\n/g, "\n"));
+  }
+  // Data for the AJAX requests (js/api.js loads data/trails-it.json, data/events-de.json, …)
+  const t = (v) => tr(v, dict, lang) ?? v;
+  fs.writeFileSync(path.join(ROOT, "data", `trails-${lang}.json`), "[\n" + trails.map((x) => "  " + JSON.stringify({ ...x, name: t(x.name), text: t(x.text), alt: t(x.alt) })).join(",\n") + "\n]\n");
+  fs.writeFileSync(path.join(ROOT, "data", `events-${lang}.json`), "[\n" + events.map((x) => "  " + JSON.stringify({ ...x, name: t(x.name), summary: t(x.summary), location: t(x.location) })).join(",\n") + "\n]\n");
+}
+if (missing.size) {
+  console.error(`Missing translations (${missing.size}):\n` + [...missing].join("\n"));
+  process.exit(1);
+}
 fs.writeFileSync(path.join(ROOT, "img", "logo.svg"), logo);
 
-const today = "2026-11-08";
+const today = "2026-11-12";
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${[...PAGES.map((p) => p[0]), "sources.html"].map((f) => `  <url><loc>${SITE}${f === "index.html" ? "" : f}</loc><lastmod>${today}</lastmod></url>`).join("\n")}
+${[...PAGES.map((p) => p[0]), "sources.html"].flatMap((f) => LANGS.map((l) => `  <url><loc>${SITE}${pageUrl(f, l)}</loc><lastmod>${today}</lastmod></url>`)).join("\n")}
 </urlset>
 `);
 fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}sitemap.xml\n`);
-console.log("built", Object.keys(pages).length, "pages");
+console.log("built", Object.keys(pages).length * 3, "pages (EN, IT, DE)");

@@ -67,7 +67,8 @@ a:hover { text-decoration-thickness: 2px; }
 
 :focus-visible { outline: 3px solid var(--md-primary); outline-offset: 2px; border-radius: var(--r-xs); }
 
-h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; }
+h1, h2, h3 { line-height: 1.25; margin: 0 0 .5em; overflow-wrap: break-word; hyphens: auto; }
+.page p, .page li { overflow-wrap: anywhere; } /* long web addresses on small screens */
 h1 { font-size: clamp(1.75rem, 1.2rem + 2.4vw, 2.75rem); font-weight: 700; }
 h2 { font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); font-weight: 700; }
 h3 { font-size: 1.125rem; font-weight: 500; }
@@ -119,11 +120,14 @@ p { margin: 0 0 1em; }
 .icon-btn:hover { background: var(--md-surface-container-high); }
 .icon-btn svg { width: 24px; height: 24px; fill: currentcolor; }
 
-.lang {
-  display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px;
-  border-radius: var(--r-full); background: var(--md-secondary-container); color: var(--md-on-secondary-container);
-  font-weight: 500; font-size: .875rem; text-decoration: none;
+/* language switch: EN / IT / DE */
+.lang-switch { display: flex; gap: 2px; padding: 2px; border-radius: var(--r-full); background: #fff; border: 1px solid var(--md-outline-variant); }
+.lang-switch a {
+  display: inline-flex; align-items: center; justify-content: center; min-width: 40px; min-height: 36px; padding: 0 10px;
+  border-radius: var(--r-full); color: var(--md-on-surface-variant); font-weight: 600; font-size: .8125rem; text-decoration: none;
 }
+.lang-switch a:hover { background: var(--md-surface-container-low); color: var(--md-on-surface); }
+.lang-switch a[aria-current="true"] { background: var(--md-secondary-container); color: var(--md-on-secondary-container); }
 
 /* ---------- main navigation: bar (compact) / rail (medium) / tabs (expanded) ---------- */
 .main-nav ul { list-style: none; margin: 0; padding: 0; }
@@ -206,7 +210,7 @@ section { margin-top: 40px; }
 .tile:hover .tile-media img { transform: scale(1.04); }
 .tile-label {
   position: absolute; left: 16px; right: 16px; bottom: 12px; z-index: 1; margin: 0;
-  color: #fff; font-size: 1.375rem; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; text-shadow: 0 1px 3px rgb(0 0 0 / .6);
+  color: #fff; font-size: 1.375rem; font-weight: 800; text-transform: uppercase; letter-spacing: .02em; text-shadow: 0 1px 3px rgb(0 0 0 / .6); hyphens: auto;
 }
 .tile-body { display: flex; flex-direction: column; gap: 6px; padding: 16px; flex: 1; }
 .tile-body p { margin: 0; }
@@ -448,11 +452,18 @@ thead th { font-weight: 500; color: var(--md-on-surface-variant); border-bottom-
   .main-nav a:hover { background: var(--md-surface-container); }
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
   .split { grid-template-columns: 7fr 5fr; }
-  .main-nav .full { display: inline; text-transform: uppercase; letter-spacing: .06em; font-size: .8125rem; font-weight: 700; }
+  .main-nav .full { display: inline; white-space: nowrap; text-transform: uppercase; letter-spacing: .06em; font-size: .8125rem; font-weight: 700; }
   .hero-inner { padding-bottom: 72px; }
   .band { grid-template-columns: 1fr 1fr; }
   .events-grid { grid-template-columns: repeat(3, 1fr); }
   .site-footer .page { grid-template-columns: 2fr 1fr 1fr; }
+}
+
+/* 840–1199 px: the menu needs the room, so search becomes an icon button (as on phones) */
+@media (min-width: 840px) and (max-width: 1199px) {
+  .app-bar .search { display: none; }
+  .app-bar .search-toggle { display: inline-flex; }
+  .main-nav a { padding: 0 10px; }
 }
 
 @media print {

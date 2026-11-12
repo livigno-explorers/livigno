@@ -3,11 +3,14 @@
 // Next semester only API_BASE changes to the address of our own back end (e.g. "/api/"),
 // and the same functions keep working.
 
+import { lang } from "./i18n.js";
+
 export const API_BASE = "data/";
+const suffix = lang === "en" ? "" : `-${lang}`; // data/trails-it.json, data/events-de.json …
 
 export const ENDPOINTS = {
-  trails: `${API_BASE}trails.json`,
-  events: `${API_BASE}events.json`,
+  trails: `${API_BASE}trails${suffix}.json`,
+  events: `${API_BASE}events${suffix}.json`,
   contact: null, // back end not ready yet: the form is validated and sent in the browser only
 };
 

@@ -1,0 +1,8 @@
+[
+  {"id":"lago-del-gallo","name":"Giro del Lago del Gallo","type":"hiking","level":"easy","image":"lake","alt":"Lago ai piedi di verdi montagne","text":"Una passeggiata vicino al lago in fondo alla valle."},
+  {"id":"valle-federia","name":"Passeggiata in Valle Federia","type":"hiking","level":"easy","image":"hiking","alt":"Tranquilla valle laterale con prati","text":"Una tranquilla valle laterale con prati e vecchie baite."},
+  {"id":"high-meadows","name":"Sentiero degli alpeggi","type":"hiking","level":"medium","image":"village","alt":"Sentiero sopra il paese","text":"Una camminata più lunga con vista sul paese."},
+  {"id":"passo-eira","name":"Percorso del Passo d'Eira","type":"cycling","level":"medium","image":"road-cycling","alt":"Strada che sale verso un passo di montagna","text":"Una salita su strada fino al passo sopra Livigno."},
+  {"id":"valley-cycle","name":"Ciclabile della valle","type":"cycling","level":"easy","image":"road-cycling","alt":"Percorso pianeggiante lungo la valle","text":"Un giro pianeggiante lungo il fondovalle."},
+  {"id":"mottolino-bike-park","name":"Bike park Mottolino","type":"mtb","level":"hard","image":"mtb","alt":"Percorso di mountain bike su un pendio ripido","text":"Percorsi downhill e flow per ciclisti esperti."}
+]

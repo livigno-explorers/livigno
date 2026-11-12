@@ -1,0 +1,8 @@
+[
+  {"id":"ski-opening","name":"Eröffnung der Skisaison","start":"2026-11-28","location":"Skigebiete Livigno","summary":"Beispielveranstaltung: erster Tag der Wintersaison auf den Pisten.","season":"winter"},
+  {"id":"christmas-market","name":"Weihnachten im Dorf","start":"2026-12-19","location":"Ortszentrum","summary":"Beispielveranstaltung: Lichter, Musik und regionales Essen im Zentrum.","season":"winter"},
+  {"id":"family-snow-day","name":"Familien-Schneetag","start":"2027-01-23","location":"Ortszentrum","summary":"Beispielveranstaltung: Spiele im Schnee für Kinder und Eltern.","season":"winter"},
+  {"id":"spring-ski","name":"Frühlingsski-Wochenende","start":"2027-04-10","location":"Skigebiete Livigno","summary":"Beispielveranstaltung: sonnige Pisten am Saisonende.","season":"winter"},
+  {"id":"trail-day","name":"Sommer-Wandertag","start":"2027-07-03","location":"Lago di Livigno","summary":"Beispielveranstaltung: geführte Wanderungen für alle Niveaus.","season":"summer"},
+  {"id":"bike-weekend","name":"Mountainbike-Wochenende","start":"2027-08-21","location":"Bikepark","summary":"Beispielveranstaltung: Touren und Tipps von einheimischen Guides.","season":"summer"}
+]

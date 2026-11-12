@@ -1,0 +1,8 @@
+[
+  {"id":"ski-opening","name":"Apertura della stagione sciistica","start":"2026-11-28","location":"Comprensori di Livigno","summary":"Evento di esempio: primo giorno della stagione invernale sulle piste.","season":"winter"},
+  {"id":"christmas-market","name":"Natale in paese","start":"2026-12-19","location":"Centro del paese","summary":"Evento di esempio: luci, musica e cibo locale in centro.","season":"winter"},
+  {"id":"family-snow-day","name":"Giornata sulla neve per famiglie","start":"2027-01-23","location":"Centro del paese","summary":"Evento di esempio: giochi sulla neve per bambini e genitori.","season":"winter"},
+  {"id":"spring-ski","name":"Weekend di sci primaverile","start":"2027-04-10","location":"Comprensori di Livigno","summary":"Evento di esempio: piste soleggiate a fine stagione.","season":"winter"},
+  {"id":"trail-day","name":"Giornata dei sentieri estivi","start":"2027-07-03","location":"Lago di Livigno","summary":"Evento di esempio: escursioni guidate per tutti i livelli.","season":"summer"},
+  {"id":"bike-weekend","name":"Weekend di mountain bike","start":"2027-08-21","location":"Bike park","summary":"Evento di esempio: uscite e consigli delle guide locali.","season":"summer"}
+]

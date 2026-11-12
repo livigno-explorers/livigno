@@ -1,9 +1,10 @@
 // Plan page: load all events with fetch and show them as hCalendar (h-event) microformat.
 import { ENDPOINTS, getJSON } from "./api.js";
+import { t, locale, months } from "./i18n.js";
 
 const list = document.querySelector("[data-events-list]");
 const status = document.querySelector("[data-events-status]");
-const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+const MONTHS = months;
 
 function eventItem(e) {
   const d = new Date(`${e.start}T00:00:00`);
@@ -25,7 +26,7 @@ function eventItem(e) {
   const time = document.createElement("time");
   time.className = "dt-start";
   time.dateTime = e.start;
-  time.textContent = d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  time.textContent = d.toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric" });
   const place = document.createElement("span");
   place.className = "p-location";
   place.textContent = e.location;
@@ -42,8 +43,8 @@ function eventItem(e) {
 try {
   const events = await getJSON(ENDPOINTS.events);
   list.replaceChildren(...events.map(eventItem));
-  status.textContent = `${events.length} events.`;
+  status.textContent = t("{n} events.", { n: events.length });
 } catch (error) {
   console.error(error);
-  status.textContent = "The events could not be updated right now, so the saved list is shown.";
+  status.textContent = t("The events could not be updated right now, so the saved list is shown.");
 }

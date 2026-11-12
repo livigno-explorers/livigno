@@ -3,7 +3,9 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const PAGES = ["index.html", "summer.html", "winter.html", "food.html", "plan.html", "sources.html"];
+const BASE_PAGES = ["index.html", "summer.html", "winter.html", "food.html", "plan.html", "sources.html"];
+// English (default) + Italian + German versions of every page
+const PAGES = BASE_PAGES.flatMap((f) => [f, f.replace(".html", "-it.html"), f.replace(".html", "-de.html")]);
 const AUTHORS = ["Magadeline Ndlovu", "Sobin Karakkunnummel", "Gayathri Devi Shalini Dileep", "Monika Tasheva"];
 
 // The tests must not depend on outside services: answer the weather API and the map ourselves.
@@ -26,7 +28,7 @@ test.describe("Every page", () => {
       page.on("pageerror", (e) => errors.push(e.message));
       await page.goto(file);
       await expect(page.locator("h1")).toHaveCount(1);
-      await expect(page.locator("header .notice")).toContainText("Student project");
+      await expect(page.locator("header .notice")).toContainText(file.includes("-it.") ? "Progetto studentesco" : file.includes("-de.") ? "Studentenprojekt" : "Student project");
       expect(errors).toEqual([]);
     });
 
@@ -137,5 +139,49 @@ test.describe("Without JavaScript", () => {
     await expect(page.locator("[data-trail-list] article")).toHaveCount(6);
     await page.goto("food.html");
     await expect(page.locator("#panel-shop")).toBeVisible();
+  });
+});
+
+test.describe("Layout", () => {
+  for (const width of [360, 600, 840, 1024, 1280]) {
+    test(`when the window is ${width} px wide, then no page in any language scrolls sideways`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 800 });
+      for (const file of PAGES) {
+        await page.goto(file);
+        const scroll = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+        expect(scroll, file).toBeLessThanOrEqual(0);
+      }
+    });
+  }
+});
+
+test.describe("Languages", () => {
+  test("when I choose IT in the language switch, then the same page opens in Italian", async ({ page }) => {
+    await page.goto("summer.html");
+    await page.locator(".lang-switch a[hreflang='it']").click();
+    await expect(page).toHaveURL(/summer-it\.html$/);
+    await expect(page.locator("html")).toHaveAttribute("lang", "it");
+    await expect(page.locator("h1")).toHaveText("Estate a Livigno");
+    await expect(page.locator(".lang-switch a[aria-current='true']")).toHaveAttribute("hreflang", "it");
+  });
+
+  test("when the Italian trails load with JavaScript, then filters and messages are in Italian", async ({ page }) => {
+    await page.goto("summer-it.html");
+    await expect(page.locator("[data-trail-status]")).toHaveText("6 di 6 percorsi mostrati.");
+    await page.getByRole("button", { name: "Escursionismo", exact: true }).click();
+    for (const m of await page.locator("[data-trail-list] .meta").allTextContents()) expect(m).toContain("Escursionismo");
+  });
+
+  test("when I send the empty form on the German page, then the errors are in German", async ({ page }) => {
+    await page.goto("plan-de.html");
+    await page.locator("[data-contact-form] button[type=submit]").click();
+    await expect(page.locator("#name-error")).toHaveText("Bitte gib deinen Namen ein.");
+  });
+
+  test("when I open the English home page, then English is the default and links to IT and DE exist", async ({ page }) => {
+    await page.goto("index.html");
+    await expect(page.locator("html")).toHaveAttribute("lang", "en");
+    await expect(page.locator("link[rel=alternate][hreflang=it]")).toHaveAttribute("href", /index-it\.html$/);
+    await expect(page.locator("link[rel=alternate][hreflang=de]")).toHaveAttribute("href", /index-de\.html$/);
   });
 });

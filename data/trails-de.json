@@ -1,0 +1,8 @@
+[
+  {"id":"lago-del-gallo","name":"Rundweg Lago del Gallo","type":"hiking","level":"easy","image":"lake","alt":"See unterhalb grüner Berge","text":"Ein Spaziergang am See am Ende des Tals."},
+  {"id":"valle-federia","name":"Wanderung im Valle Federia","type":"hiking","level":"easy","image":"hiking","alt":"Ruhiges Seitental mit Wiesen","text":"Ein ruhiges Seitental mit Wiesen und alten Hütten."},
+  {"id":"high-meadows","name":"Almwiesenweg","type":"hiking","level":"medium","image":"village","alt":"Weg oberhalb des Dorfes","text":"Eine längere Wanderung mit Blick über das Dorf."},
+  {"id":"passo-eira","name":"Route zum Passo d'Eira","type":"cycling","level":"medium","image":"road-cycling","alt":"Straße hinauf zu einem Bergpass","text":"Ein Anstieg auf der Straße zum Pass über Livigno."},
+  {"id":"valley-cycle","name":"Talradweg","type":"cycling","level":"easy","image":"road-cycling","alt":"Flacher Weg entlang des Tals","text":"Eine flache Fahrt entlang des Talbodens."},
+  {"id":"mottolino-bike-park","name":"Bikepark Mottolino","type":"mtb","level":"hard","image":"mtb","alt":"Mountainbike-Trail an einem steilen Hang","text":"Downhill- und Flowtrails für erfahrene Fahrer."}
+]

@@ -1,5 +1,6 @@
 // Summer page: load trails with fetch (AJAX), search + filter chips, and "Plan my day" (saved in the browser).
 import { ENDPOINTS, getJSON } from "./api.js";
+import { t as tr } from "./i18n.js";
 
 const list = document.querySelector("[data-trail-list]");
 const status = document.querySelector("[data-trail-status]");
@@ -7,7 +8,7 @@ const search = document.querySelector("#trail-search");
 const planList = document.querySelector("[data-plan-list]");
 const STORE = "livigno-plan";
 
-const TYPE = { hiking: "Hiking", cycling: "Cycling", mtb: "Mountain bike" };
+const TYPE = { hiking: tr("Hiking"), cycling: tr("Cycling"), mtb: tr("Mountain bike") };
 const filters = { type: new Set(), level: new Set() };
 let trails = [];
 
@@ -30,11 +31,11 @@ function trailCard(t) {
   const card = el("article", { class: "card card-outlined" });
   card.append(el("img", { src: `img/photos/${t.image}.jpg`, alt: t.alt, width: "1200", height: "800", loading: "lazy", decoding: "async" }));
   const body = el("div", { class: "card-body" });
-  body.append(el("h3", {}, t.name), el("p", { class: "meta" }, `${TYPE[t.type]} · ${t.level}`), el("p", {}, t.text));
+  body.append(el("h3", {}, t.name), el("p", { class: "meta" }, `${TYPE[t.type]} · ${tr(t.level)}`), el("p", {}, t.text));
   const actions = el("div", { class: "card-actions" });
   const save = el("button", { type: "button", class: "btn btn-tonal", "aria-pressed": String(plan.includes(t.id)) });
-  save.textContent = plan.includes(t.id) ? "Saved" : "Save";
-  save.setAttribute("aria-label", `Save ${t.name} to my day plan`);
+  // Visible word first, trail name hidden for screen readers (the accessible name always contains the visible text).
+  save.append(plan.includes(t.id) ? tr("Saved") : tr("Save"), el("span", { class: "visually-hidden" }, ` – ${t.name}`));
   save.addEventListener("click", () => toggle(t.id));
   actions.append(save);
   body.append(actions);
@@ -52,10 +53,10 @@ function render() {
   list.replaceChildren(...shown.map(trailCard));
   status.replaceChildren();
   if (shown.length) {
-    status.textContent = `${shown.length} of ${trails.length} trails shown.`;
+    status.textContent = tr("{shown} of {all} trails shown.", { shown: shown.length, all: trails.length });
   } else {
-    status.append("No trail matches your search. ");
-    const clear = el("button", { type: "button", class: "btn btn-text" }, "Clear filters");
+    status.append(tr("No trail matches your search. "));
+    const clear = el("button", { type: "button", class: "btn btn-text" }, tr("Clear filters"));
     clear.addEventListener("click", clearFilters);
     status.append(clear);
   }
@@ -69,8 +70,9 @@ function renderPlan() {
     .map((t) => {
       const li = el("li");
       const text = el("div", { class: "text" });
-      text.append(el("p", { class: "title" }, t.name), el("p", { class: "support" }, `${TYPE[t.type]} · ${t.level}`));
-      const remove = el("button", { type: "button", class: "btn btn-text", "aria-label": `Remove ${t.name} from my day plan` }, "Remove");
+      text.append(el("p", { class: "title" }, t.name), el("p", { class: "support" }, `${TYPE[t.type]} · ${tr(t.level)}`));
+      const remove = el("button", { type: "button", class: "btn btn-text" }, tr("Remove"));
+      remove.append(el("span", { class: "visually-hidden" }, ` – ${t.name}`));
       remove.addEventListener("click", () => toggle(t.id));
       li.append(text, remove);
       return li;
@@ -115,5 +117,5 @@ try {
   render();
 } catch (error) {
   console.error(error);
-  status.textContent = "The trails could not be updated right now, so the saved list is shown. Filters are not available.";
+  status.textContent = tr("The trails could not be updated right now, so the saved list is shown. Filters are not available.");
 }

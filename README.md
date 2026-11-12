@@ -58,13 +58,20 @@ Then open the address it prints (for example http://localhost:3000).
 ```sh
 npm install                      # @playwright/test + @axe-core/playwright (pinned versions)
 npx playwright install chromium  # once
-npm test                         # 48 tests: 24 desktop + 24 mobile
+npm test                         # 114 tests (desktop + mobile, all 3 languages)
 ```
 
 The tests check every acceptance criterion in `PRD.md`: no console errors, one `h1`, the student notice,
 0 axe (WCAG 2.1 A/AA) violations on every page, navigation, trail filters, "Plan my day", weather API
 (answered by the test, no network needed), tabs with arrow keys, form validation, and the site with
 JavaScript turned off. Plan: `PRD.md` · Definition of Done: `DoD.md` · Reflection: `REFLECTION.md`.
+
+## Languages
+
+English is the default (`index.html`, `summer.html`, …). Italian and German versions are built next to them
+(`index-it.html`, `index-de.html`, …) from the dictionaries in `src/i18n/pages.it.json` and `src/i18n/pages.de.json`;
+texts written by JavaScript are in `js/i18n.js`. The header has an EN / IT / DE switch, and every page lists its
+other languages with `<link rel="alternate" hreflang>`. `node src/build.mjs` stops with a list if any text has no translation.
 
 ## Works without JavaScript
 

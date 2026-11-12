@@ -25,7 +25,7 @@ what to do, what to eat, how to get there, and what is on.
 - Bookings, payments, ski-pass sales
 - A real back end or database (planned for next semester)
 - Sending e-mails (the contact form only validates)
-- Other languages than English
+- Languages other than English, Italian and German
 
 ## 5. Increments
 
@@ -72,7 +72,14 @@ Story: As a visitor, I want a fresh, friendly look.
 - When a page opens, then it uses baby blue, light green and grey.
 - When axe checks colour contrast, then there are 0 violations.
 
-### P9: Back end – status: planned (next semester)
+### P9: Italian and German versions – status: done
+Story: As an Italian- or German-speaking visitor, I want to read the site in my language.
+- When I open the site, then it is in English (default).
+- When I choose IT or DE in the language switch, then the same page opens in that language.
+- When JavaScript writes a message (trail status, form errors, weather), then it is in the page's language.
+- When the site is built, then the build stops if any text has no Italian or German translation.
+
+### P10: Back end – status: planned (next semester)
 Story: As the tourist office, I want to manage trails and events and receive contact messages.
 
 ## 6. Decisions and changes
@@ -87,3 +94,6 @@ Story: As the tourist office, I want to manage trails and events and receive con
 | 2026-11-12 | Progressive enhancement: content in HTML, JavaScript only adds features | Lecture: the site must be usable without JavaScript |
 | 2026-11-12 | Added Playwright end-to-end tests with axe | Lecture: "automated tests pass" is part of the DoD |
 | 2026-11-12 | New colours: baby blue, light green, grey | Team found the old design too plain |
+| 2026-11-12 | Mountain photo as page background, text on frosted panels | Team wanted a real-looking background; panels keep WCAG contrast |
+| 2026-11-12 | Italian and German pages (`index-it.html`, `index-de.html`, …) built from dictionaries in `src/i18n/` | Livigno is in Italy and many visitors speak German; English stays the default |
+| 2026-11-12 | Header search becomes an icon between 840 and 1199 px | New overflow test found sideways scrolling at those widths |

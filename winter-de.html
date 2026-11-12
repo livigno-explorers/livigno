@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.className = "js";</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Winter in Livigno – Skifahren, Snowboarden und Schneebericht</title>
+  <meta name="description" content="Skifahren und Snowboarden in Livigno: aktuelles Wetter und Schnee, die Skigebiete Carosello 3000 und Mottolino, Skischulen und Skipass-Infos.">
+  <meta name="author" content="Magadeline Ndlovu, Sobin Karakkunnummel, Gayathri Devi Shalini Dileep, Monika Tasheva">
+  <meta name="theme-color" content="#1f5f8b">
+  <link rel="canonical" href="https://livigno-explorers.github.io/livigno/winter-de.html">
+  <link rel="alternate" hreflang="en" href="https://livigno-explorers.github.io/livigno/winter.html">
+  <link rel="alternate" hreflang="it" href="https://livigno-explorers.github.io/livigno/winter-it.html">
+  <link rel="alternate" hreflang="de" href="https://livigno-explorers.github.io/livigno/winter-de.html">
+  <link rel="alternate" hreflang="x-default" href="https://livigno-explorers.github.io/livigno/winter.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Winter in Livigno – Skifahren, Snowboarden und Schneebericht">
+  <meta property="og:description" content="Skifahren und Snowboarden in Livigno: aktuelles Wetter und Schnee, die Skigebiete Carosello 3000 und Mottolino, Skischulen und Skipass-Infos.">
+  <meta property="og:url" content="https://livigno-explorers.github.io/livigno/winter-de.html">
+  <meta property="og:image" content="https://livigno-explorers.github.io/livigno/img/photos/hero-summer.jpg">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
+  <script type="module" src="js/main.js"></script>
+  <script type="module" src="js/weather.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Hauptinhalt springen</a>
+  <header>
+    <p class="notice" role="note">Studentenprojekt – nur für Lehrzwecke · CZU Prag · keine offizielle Website von Livigno</p>
+    <div class="app-bar">
+      <a class="brand" href="index-de.html"><img src="img/logo.jpg" alt="" width="40" height="40">Livigno</a>
+      <nav class="main-nav" aria-label="Hauptmenü">
+      <ul>
+        <li><a href="index-de.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg></span><span class="short">Start</span><span class="full">Start</span></a></li>
+        <li><a href="summer-de.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M11 1h2v4h-2zM11 19h2v4h-2zM1 11h4v2H1zM19 11h4v2h-4zM4.2 5.6l1.4-1.4 2.8 2.8-1.4 1.4zM15.6 17l1.4-1.4 2.8 2.8-1.4 1.4zM4.2 18.4 7 15.6 8.4 17l-2.8 2.8zM15.6 7 18.4 4.2l1.4 1.4L17 8.4z"/></svg></span><span class="short">Sommer</span><span class="full">Sommer</span></a></li>
+        <li><a href="winter-de.html" aria-current="page"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 1h2v22h-2z"/><path d="M2.3 6.5l1-1.7 18.4 12.7-1 1.7z"/><path d="M20.7 4.8l1 1.7L3.3 19.2l-1-1.7z"/><path d="M8.5 2.5 12 6l3.5-3.5 1.4 1.4L12 8.8 7.1 3.9zM8.5 21.5 12 18l3.5 3.5 1.4-1.4L12 15.2l-4.9 4.9z"/></svg></span><span class="short">Winter</span><span class="full">Winter</span></a></li>
+        <li><a href="food-de.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v7a2 2 0 0 1-1 1.7V22H6V10.7A2 2 0 0 1 5 9V2h2v6h0zM3 2h2v7H3zM9 2h2v7H9zM16 2c2.8 0 4 3 4 7 0 2-1 3-2 3.5V22h-2z"/></svg></span><span class="short">Essen</span><span class="full">Essen &amp; Regionales</span></a></li>
+        <li><a href="plan-de.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 9 2 3 4v18l6-2 6 2 6-2V2zM9 4.2l6 2v13.6l-6-2z"/></svg></span><span class="short">Planen</span><span class="full">Besuch planen</span></a></li>
+      </ul>
+    </nav>
+      <span class="spacer"></span>
+      <form class="search js-only" role="search" action="summer-de.html" method="get">
+        <label class="visually-hidden" for="site-search">Touren suchen</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
+        <input id="site-search" name="q" type="search" placeholder="Touren suchen">
+        <button type="submit" class="visually-hidden">Suchen</button>
+      </form>
+      <a class="icon-btn search-toggle js-only" href="summer-de.html#trail-search" aria-label="Touren suchen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
+      <nav class="lang-switch" aria-label="Sprache"><a href="winter.html" hreflang="en" lang="en">EN<span class="visually-hidden"> English</span></a><a href="winter-it.html" hreflang="it" lang="it">IT<span class="visually-hidden"> Italiano</span></a><a href="winter-de.html" hreflang="de" lang="de" aria-current="true">DE<span class="visually-hidden"> Deutsch</span></a></nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section class="photo-hero" aria-labelledby="page-title">
+      <img src="img/photos/hero-winter.jpg" alt="Das verschneite Tal von Livigno" width="1600" height="900" fetchpriority="high" decoding="async">
+      <div class="hero-inner">
+        <p class="eyebrow">Winter</p>
+        <h1 id="page-title">Winter in Livigno</h1>
+        <p class="hero-lead">Lange Winter, zwei Skigebiete und ein Snowpark. Prüfe die Bedingungen, vergleiche die Angebote und hol dir deinen Skipass.</p>
+        <div class="segmented on-dark js-only" role="group" aria-label="Wintersport" data-sport-switch>
+          <button type="button" aria-pressed="true" data-sport="ski">Skifahren</button>
+          <button type="button" aria-pressed="false" data-sport="board">Snowboard</button>
+          <button type="button" aria-pressed="false" data-sport="xc">Langlauf</button>
+        </div>
+        <p class="status js-only" aria-live="polite" data-sport-text>Ski: Pisten für Anfänger und Könner in beiden Skigebieten.</p>
+      </div>
+    </section>
+    <div class="page">
+
+
+    <div class="split">
+      <section aria-labelledby="snow-title">
+        <h2 id="snow-title">Wetter und Schnee aktuell</h2>
+        <div class="fact weather" data-weather>
+          <dl>
+            <dt>Temperatur</dt><dd data-w="temperature">–</dd>
+            <dt>Schneehöhe</dt><dd data-w="snow">–</dd>
+            <dt>Neuschnee (letzte Stunde)</dt><dd data-w="snowfall">–</dd>
+            <dt>Wind</dt><dd data-w="wind">–</dd>
+          </dl>
+          <p class="small" role="status" aria-live="polite" data-w="updated"><span class="js-only">Live-Daten werden geladen…</span></p>
+          <noscript><p class="small">Das Live-Wetter benötigt JavaScript. Siehe die <a href="https://open-meteo.com/en/docs#latitude=46.538&amp;longitude=10.135">Open-Meteo-Vorhersage für Livigno</a>.</p></noscript>
+        </div>
+        <p class="small">Live-Daten der Open-Meteo-Wetter-API für das Tal von Livigno. Die Pistenbedingungen können abweichen – prüfe immer die offiziellen Infos der Skigebiete.</p>
+      </section>
+
+      <section aria-labelledby="pass-title">
+        <h2 id="pass-title">Skipass-Angebote</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Typische Skipass-Arten</caption>
+            <thead><tr><th scope="col">Skipass</th><th scope="col">Geeignet für</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">1 Tag</th><td>Einen ersten Versuch oder einen kurzen Besuch</td></tr>
+              <tr><th scope="row">Mehrtages</th><td>Eine Skiwoche, meist günstiger pro Tag</td></tr>
+              <tr><th scope="row">Saison</th><td>Einheimische und Stammgäste</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="small">Die Preise ändern sich jede Saison, daher verlinken wir auf die offiziellen Skipass-Infos, statt Preise zu kopieren.</p>
+      </section>
+    </div>
+
+    <section aria-labelledby="areas-title">
+      <h2 id="areas-title">Skigebiete und Skischulen</h2>
+      <div class="grid grid-3">
+
+        <article class="card card-elevated">
+          <img src="img/photos/ski.jpg" alt="Skifahrer auf einer breiten Piste" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h3>Carosello 3000</h3>
+            <p class="meta">Skigebiet</p>
+            <p>Eines der beiden großen Skigebiete von Livigno.</p>
+
+          </div>
+        </article>
+
+        <article class="card card-elevated">
+          <img src="img/photos/snowpark.jpg" alt="Snowboarder in einem Snowpark" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h3>Mottolino</h3>
+            <p class="meta">Skigebiet · Snowpark</p>
+            <p>Das zweite Skigebiet, mit einem Snowpark für Freestyle.</p>
+
+          </div>
+        </article>
+
+        <article class="card card-elevated">
+          <img src="img/photos/ski-school.jpg" alt="Zwei Skilehrer in blauen Uniformen blicken über ein verschneites Tal" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h3>Ski- und Snowboardschulen</h3>
+            <p class="meta">Unterricht für alle Niveaus</p>
+            <p>Gruppen- und Privatunterricht für Kinder und Erwachsene.</p>
+
+          </div>
+        </article>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-filled" href="https://www.livigno.eu/en" target="_blank" rel="noopener">Skipass kaufen <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="visually-hidden"> (öffnet in einem neuen Tab)</span></a>
+        <a class="btn btn-outlined" href="https://www.livigno.eu/en" target="_blank" rel="noopener">Webcams <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14zM5 5h6v2H5v12h12v-6h2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z"/></svg><span class="visually-hidden"> (öffnet in einem neuen Tab)</span></a>
+      </div>
+    </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page">
+      <div>
+        <h2>Livigno – Bergabenteuer das ganze Jahr</h2>
+        <p><strong>Autorinnen und Autoren:</strong> Magadeline Ndlovu, Sobin Karakkunnummel, Gayathri Devi Shalini Dileep, Monika Tasheva</p>
+        <p>Studentenprojekt für den Kurs Internet Technologies – Client Side, Tschechische Agraruniversität Prag, 2026. Nur für Lehrzwecke.</p>
+      </div>
+      <div class="h-card">
+        <h2>Touristeninformation</h2>
+        <p><a class="p-name u-url" href="https://www.livigno.eu/en">APT Livigno</a> (offizielle Website)</p>
+        <p class="p-adr h-adr"><span class="p-locality">Livigno</span>, <span class="p-region">Lombardei</span>, <span class="p-country-name">Italien</span></p>
+        <p class="p-geo h-geo">Koordinaten: <span class="p-latitude">46.538</span>, <span class="p-longitude">10.135</span></p>
+      </div>
+      <div>
+        <h2>Über diese Website</h2>
+        <ul>
+          <li><a href="sources-de.html">Quellen &amp; Bildnachweise</a></li>
+          <li><a href="plan-de.html#contact">Kontaktformular</a></li>
+          <li><a href="sitemap.xml">Sitemap (XML)</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

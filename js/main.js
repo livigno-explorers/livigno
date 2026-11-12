@@ -1,3 +1,5 @@
+import { t } from "./i18n.js";
+
 // Shared behaviour for all pages: tabs (WAI-ARIA tabs pattern) and segmented buttons.
 
 // ---------- Tabs ----------
@@ -52,21 +54,21 @@ function segmented(selector, attr, texts, onChange) {
 }
 
 segmented("[data-season-switch]", "season", {
-  summer: "Summer: hiking trails, cycling routes, lakes and a bike park.",
-  winter: "Winter: two ski areas, a snow park, ski schools and live snow information.",
+  summer: t("Summer: hiking trails, cycling routes, lakes and a bike park."),
+  winter: t("Winter: two ski areas, a snow park, ski schools and live snow information."),
 }, (season) => {
   // Change the big photo and put the chosen season's activities first.
   const hero = document.querySelector("[data-season-hero]");
   if (hero) {
     hero.src = `img/photos/hero-${season}.jpg`;
-    hero.alt = season === "winter" ? "Livigno valley covered in snow" : "Green Livigno valley with the lake and mountains in summer";
+    hero.alt = season === "winter" ? t("Livigno valley covered in snow") : t("Green Livigno valley with the lake and mountains in summer");
   }
   const cards = [...document.querySelectorAll(`[data-season-card="${season}"]`)];
   cards.reverse().forEach((card) => card.parentElement.prepend(card));
 });
 
 segmented("[data-sport-switch]", "sport", {
-  ski: "Skiing: slopes for beginners and experts in both ski areas.",
-  board: "Snowboard: a snow park with jumps and rails, plus wide slopes.",
-  xc: "Cross-country: prepared tracks along the flat valley floor.",
+  ski: t("Skiing: slopes for beginners and experts in both ski areas."),
+  board: t("Snowboard: a snow park with jumps and rails, plus wide slopes."),
+  xc: t("Cross-country: prepared tracks along the flat valley floor."),
 });
