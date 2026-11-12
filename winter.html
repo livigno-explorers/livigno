@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
+  <script>document.documentElement.className = "js";</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Winter in Livigno – skiing, snowboarding and snow report</title>
   <meta name="description" content="Skiing and snowboarding in Livigno: current weather and snow, the Carosello 3000 and Mottolino ski areas, ski schools and ski pass information.">
   <meta name="author" content="Magadeline Ndlovu, Sobin Karakkunnummel, Gayathri Devi Shalini Dileep, Monika Tasheva">
-  <meta name="theme-color" content="#2f5f7d">
+  <meta name="theme-color" content="#1f5f8b">
   <link rel="canonical" href="https://livigno-explorers.github.io/livigno/winter.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Winter in Livigno – skiing, snowboarding and snow report">
@@ -35,13 +36,13 @@
       </ul>
     </nav>
       <span class="spacer"></span>
-      <form class="search" role="search" action="summer.html" method="get">
+      <form class="search js-only" role="search" action="summer.html" method="get">
         <label class="visually-hidden" for="site-search">Search trails</label>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
         <input id="site-search" name="q" type="search" placeholder="Search trails">
         <button type="submit" class="visually-hidden">Search</button>
       </form>
-      <a class="icon-btn search-toggle" href="summer.html#trail-search" aria-label="Search trails"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
+      <a class="icon-btn search-toggle js-only" href="summer.html#trail-search" aria-label="Search trails"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
       <a class="lang" href="winter.html" hreflang="en">EN<span class="visually-hidden"> – English (current language)</span></a>
     </div>
   </header>
@@ -53,12 +54,12 @@
         <p class="eyebrow">Winter</p>
         <h1 id="page-title">Winter in Livigno</h1>
         <p class="hero-lead">Long winters, two ski areas and a snow park. Check the conditions, compare the options and get your ski pass.</p>
-        <div class="segmented on-dark" role="group" aria-label="Winter sport" data-sport-switch>
+        <div class="segmented on-dark js-only" role="group" aria-label="Winter sport" data-sport-switch>
           <button type="button" aria-pressed="true" data-sport="ski">Skiing</button>
           <button type="button" aria-pressed="false" data-sport="board">Snowboard</button>
           <button type="button" aria-pressed="false" data-sport="xc">Cross-country</button>
         </div>
-        <p class="status" aria-live="polite" data-sport-text>Skiing: slopes for beginners and experts in both ski areas.</p>
+        <p class="status js-only" aria-live="polite" data-sport-text>Skiing: slopes for beginners and experts in both ski areas.</p>
       </div>
     </section>
     <div class="page">
@@ -74,7 +75,8 @@
             <dt>New snow (last hour)</dt><dd data-w="snowfall">–</dd>
             <dt>Wind</dt><dd data-w="wind">–</dd>
           </dl>
-          <p class="small" role="status" aria-live="polite" data-w="updated">Loading live data…</p>
+          <p class="small" role="status" aria-live="polite" data-w="updated"><span class="js-only">Loading live data…</span></p>
+          <noscript><p class="small">Live weather needs JavaScript. See the <a href="https://open-meteo.com/en/docs#latitude=46.538&amp;longitude=10.135">Open-Meteo forecast for Livigno</a>.</p></noscript>
         </div>
         <p class="small">Live data from the Open-Meteo weather API for the Livigno valley. Slope conditions can differ – always check the official ski area information.</p>
       </section>

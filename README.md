@@ -53,6 +53,25 @@ Then open the address it prints (for example http://localhost:3000).
 - Outlined text fields with **floating labels** (the label no longer disappears).
 - **404 page** with links to the main sections.
 
+## Tests (end-to-end)
+
+```sh
+npm install                      # @playwright/test + @axe-core/playwright (pinned versions)
+npx playwright install chromium  # once
+npm test                         # 48 tests: 24 desktop + 24 mobile
+```
+
+The tests check every acceptance criterion in `PRD.md`: no console errors, one `h1`, the student notice,
+0 axe (WCAG 2.1 A/AA) violations on every page, navigation, trail filters, "Plan my day", weather API
+(answered by the test, no network needed), tabs with arrow keys, form validation, and the site with
+JavaScript turned off. Plan: `PRD.md` · Definition of Done: `DoD.md` · Reflection: `REFLECTION.md`.
+
+## Works without JavaScript
+
+All content is in the HTML. JavaScript only adds features (filters, tabs, weather, form).
+With JavaScript off, every tab section is shown with its own heading, and trails and events are listed.
+Screen readers use JavaScript normally, so they get the full interactive version with ARIA.
+
 ## Project structure
 
 ```text

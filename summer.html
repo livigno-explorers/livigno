@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
+  <script>document.documentElement.className = "js";</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Summer in Livigno – hiking, cycling and mountain biking</title>
   <meta name="description" content="Find hiking trails, cycling routes and the bike park in Livigno. Filter by activity and difficulty, see the trail map and plan your day.">
   <meta name="author" content="Magadeline Ndlovu, Sobin Karakkunnummel, Gayathri Devi Shalini Dileep, Monika Tasheva">
-  <meta name="theme-color" content="#2f5f7d">
+  <meta name="theme-color" content="#1f5f8b">
   <link rel="canonical" href="https://livigno-explorers.github.io/livigno/summer.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Summer in Livigno – hiking, cycling and mountain biking">
@@ -34,13 +35,13 @@
       </ul>
     </nav>
       <span class="spacer"></span>
-      <form class="search" role="search" action="summer.html" method="get">
+      <form class="search js-only" role="search" action="summer.html" method="get">
         <label class="visually-hidden" for="site-search">Search trails</label>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
         <input id="site-search" name="q" type="search" placeholder="Search trails">
         <button type="submit" class="visually-hidden">Search</button>
       </form>
-      <a class="icon-btn search-toggle" href="summer.html#trail-search" aria-label="Search trails"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
+      <a class="icon-btn search-toggle js-only" href="summer.html#trail-search" aria-label="Search trails"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
       <a class="lang" href="summer.html" hreflang="en">EN<span class="visually-hidden"> – English (current language)</span></a>
     </div>
   </header>
@@ -59,31 +60,56 @@
 
     <section aria-labelledby="trails-title">
       <h2 id="trails-title">Trails</h2>
-      <form class="search-bar" role="search" data-trail-form>
+      <form class="search-bar js-only" role="search" data-trail-form>
         <label class="visually-hidden" for="trail-search">Search trails by name</label>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
         <input id="trail-search" type="search" name="q" placeholder="Search trails and bike routes" autocomplete="off">
         <button type="submit" class="visually-hidden">Search</button>
       </form>
-      <fieldset class="chips" data-filter="type">
+      <fieldset class="chips js-only" data-filter="type">
         <legend>Activity</legend>
         <button type="button" class="chip" aria-pressed="false" data-value="hiking">Hiking</button>
         <button type="button" class="chip" aria-pressed="false" data-value="cycling">Cycling</button>
         <button type="button" class="chip" aria-pressed="false" data-value="mtb">Mountain bike</button>
       </fieldset>
-      <fieldset class="chips" data-filter="level">
+      <fieldset class="chips js-only" data-filter="level">
         <legend>Difficulty</legend>
         <button type="button" class="chip" aria-pressed="false" data-value="easy">Easy</button>
         <button type="button" class="chip" aria-pressed="false" data-value="medium">Medium</button>
         <button type="button" class="chip" aria-pressed="false" data-value="hard">Hard</button>
       </fieldset>
-      <p class="status" role="status" aria-live="polite" data-trail-status>Loading trails…</p>
-      <div class="grid grid-3" data-trail-list></div>
+      <p class="status" role="status" aria-live="polite" data-trail-status>6 trails.</p>
+      <div class="grid grid-3" data-trail-list>
+        <article class="card card-outlined">
+          <img src="img/photos/lake.jpg" alt="Lake below green mountains" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body"><h3>Lago del Gallo loop</h3><p class="meta">Hiking · easy</p><p>A walk near the lake at the end of the valley.</p></div>
+        </article>
+        <article class="card card-outlined">
+          <img src="img/photos/hiking.jpg" alt="Quiet side valley with meadows" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body"><h3>Valle Federia walk</h3><p class="meta">Hiking · easy</p><p>A quiet side valley with meadows and old huts.</p></div>
+        </article>
+        <article class="card card-outlined">
+          <img src="img/photos/village.jpg" alt="Path above the village" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body"><h3>High meadows trail</h3><p class="meta">Hiking · medium</p><p>A longer walk with views over the village.</p></div>
+        </article>
+        <article class="card card-outlined">
+          <img src="img/photos/road-cycling.jpg" alt="Road climbing to a mountain pass" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body"><h3>Passo d'Eira route</h3><p class="meta">Cycling · medium</p><p>A road climb to the pass above Livigno.</p></div>
+        </article>
+        <article class="card card-outlined">
+          <img src="img/photos/road-cycling.jpg" alt="Flat path along the valley" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body"><h3>Valley cycle path</h3><p class="meta">Cycling · easy</p><p>A flat ride along the valley floor.</p></div>
+        </article>
+        <article class="card card-outlined">
+          <img src="img/photos/mtb.jpg" alt="Mountain bike trail on a steep slope" width="1200" height="800" loading="lazy" decoding="async">
+          <div class="card-body"><h3>Mottolino bike park</h3><p class="meta">Mountain bike · hard</p><p>Downhill and flow trails for experienced riders.</p></div>
+        </article>
+      </div>
       <p class="small">Difficulty: <strong>easy</strong> – good paths, little climbing; <strong>medium</strong> – longer, some steep parts; <strong>hard</strong> – for experienced, fit visitors. Trail data is sample data for the student project and will be checked with the tourist office.</p>
-      <noscript><p>Please turn on JavaScript to see and filter the trails.</p></noscript>
+      <noscript><p>Search, filters and "Plan my day" need JavaScript; all trails are listed above.</p></noscript>
     </section>
 
-    <section id="plan-my-day" aria-labelledby="day-title">
+    <section id="plan-my-day" class="js-only" aria-labelledby="day-title">
       <div class="section-head">
         <h2 id="day-title">Plan my day</h2>
         <button type="button" class="btn btn-text" data-clear-plan>Clear plan</button>
@@ -98,7 +124,7 @@
       <p class="small">Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
     </section>
 
-    <p><a class="fab" href="#plan-my-day"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg> Plan my day</a></p>
+    <p class="js-only"><a class="fab" href="#plan-my-day"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg> Plan my day</a></p>
     </div>
   </main>
 

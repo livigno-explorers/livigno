@@ -9,7 +9,9 @@ for (const tablist of document.querySelectorAll('[role="tablist"]')) {
       const on = t === tab;
       t.setAttribute("aria-selected", String(on));
       t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      const panel = document.getElementById(t.getAttribute("aria-controls"));
+      panel.hidden = !on;
+      panel.removeAttribute("data-tab-hidden");
     }
     if (focus) tab.focus();
   };
@@ -28,9 +30,10 @@ for (const tablist of document.querySelectorAll('[role="tablist"]')) {
     select(tabs[(next + tabs.length) % tabs.length]);
   });
 
-  // Open a tab from the address, e.g. plan.html#tab-events
+  // Without JavaScript all panels are visible. Here we show only the selected one,
+  // or the one named in the address, e.g. plan.html#tab-events
   const fromHash = tabs.find((t) => `#${t.id}` === location.hash);
-  if (fromHash) select(fromHash, false);
+  select(fromHash || tabs.find((t) => t.getAttribute("aria-selected") === "true") || tabs[0], false);
 }
 
 // ---------- Segmented buttons ----------

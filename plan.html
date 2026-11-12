@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
+  <script>document.documentElement.className = "js";</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Plan your visit to Livigno – getting there, where to stay, events</title>
   <meta name="description" content="How to get to Livigno by car, bus or plane, where to stay, upcoming events, frequently asked questions and a contact form for the tourist office.">
   <meta name="author" content="Magadeline Ndlovu, Sobin Karakkunnummel, Gayathri Devi Shalini Dileep, Monika Tasheva">
-  <meta name="theme-color" content="#2f5f7d">
+  <meta name="theme-color" content="#1f5f8b">
   <link rel="canonical" href="https://livigno-explorers.github.io/livigno/plan.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Plan your visit to Livigno – getting there, where to stay, events">
@@ -35,13 +36,13 @@
       </ul>
     </nav>
       <span class="spacer"></span>
-      <form class="search" role="search" action="summer.html" method="get">
+      <form class="search js-only" role="search" action="summer.html" method="get">
         <label class="visually-hidden" for="site-search">Search trails</label>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
         <input id="site-search" name="q" type="search" placeholder="Search trails">
         <button type="submit" class="visually-hidden">Search</button>
       </form>
-      <a class="icon-btn search-toggle" href="summer.html#trail-search" aria-label="Search trails"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
+      <a class="icon-btn search-toggle js-only" href="summer.html#trail-search" aria-label="Search trails"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
       <a class="lang" href="plan.html" hreflang="en">EN<span class="visually-hidden"> – English (current language)</span></a>
     </div>
   </header>
@@ -67,6 +68,7 @@
       </div>
 
       <div role="tabpanel" id="panel-travel" aria-labelledby="tab-travel" tabindex="0">
+        <h3 class="no-js-only">Getting there</h3>
         <ul class="list">
           <li><span class="lead-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11 6.5 6.5A2 2 0 0 1 8.4 5h7.2a2 2 0 0 1 1.9 1.5L19 11a2 2 0 0 1 2 2v5h-2v2h-3v-2H8v2H5v-2H3v-5a2 2 0 0 1 2-2zm2.1 0h9.8l-1-3.2a1 1 0 0 0-1-.8H9.1a1 1 0 0 0-1 .8zM6.5 13a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg></span><div class="text"><p class="title">By car</p><p class="support">From Italy over the Foscagno Pass; from Switzerland through the Munt la Schera tunnel or, in summer, over the Forcola di Livigno pass.</p></div></li>
           <li><span class="lead-icon" aria-hidden="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h12a2 2 0 0 1 2 2v14h-1v3h-3v-3H8v3H5v-3H4V4a2 2 0 0 1 2-2zm0 3v6h12V5zm1.5 8a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm9 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/></svg></span><div class="text"><p class="title">By bus</p><p class="support">Bus connections from Tirano and Bormio, which can be reached by train or car.</p></div></li>
@@ -74,7 +76,8 @@
         </ul>
       </div>
 
-      <div role="tabpanel" id="panel-stay" aria-labelledby="tab-stay" tabindex="0" hidden>
+      <div role="tabpanel" id="panel-stay" aria-labelledby="tab-stay" tabindex="0" data-tab-hidden>
+        <h3 class="no-js-only">Where to stay</h3>
         <div class="grid grid-3">
 
         <article class="card card-outlined">
@@ -109,14 +112,22 @@
         </div>
       </div>
 
-      <div role="tabpanel" id="panel-events" aria-labelledby="tab-events" tabindex="0" hidden>
-        <p class="status" role="status" aria-live="polite" data-events-status>Loading events…</p>
-        <ul class="list" data-events-list></ul>
+      <div role="tabpanel" id="panel-events" aria-labelledby="tab-events" tabindex="0" data-tab-hidden>
+        <h3 class="no-js-only">Events</h3>
+        <p class="status" role="status" aria-live="polite" data-events-status>6 events.</p>
+        <ul class="list" data-events-list>
+          <li class="h-event"><span class="lead-icon" aria-hidden="true">28<br>NOV</span><div class="text"><p class="title p-name">Opening of the ski season</p><p class="support"><time class="dt-start" datetime="2026-11-28">28 November 2026</time> · <span class="p-location">Livigno ski areas</span></p><p class="support p-summary">Sample event: first day of the winter season on the slopes.</p></div></li>
+          <li class="h-event"><span class="lead-icon" aria-hidden="true">19<br>DEC</span><div class="text"><p class="title p-name">Christmas in the village</p><p class="support"><time class="dt-start" datetime="2026-12-19">19 December 2026</time> · <span class="p-location">Village centre</span></p><p class="support p-summary">Sample event: lights, music and local food in the centre.</p></div></li>
+          <li class="h-event"><span class="lead-icon" aria-hidden="true">23<br>JAN</span><div class="text"><p class="title p-name">Family snow day</p><p class="support"><time class="dt-start" datetime="2027-01-23">23 January 2027</time> · <span class="p-location">Village centre</span></p><p class="support p-summary">Sample event: games in the snow for children and parents.</p></div></li>
+          <li class="h-event"><span class="lead-icon" aria-hidden="true">10<br>APR</span><div class="text"><p class="title p-name">Spring skiing weekend</p><p class="support"><time class="dt-start" datetime="2027-04-10">10 April 2027</time> · <span class="p-location">Livigno ski areas</span></p><p class="support p-summary">Sample event: sunny slopes at the end of the season.</p></div></li>
+          <li class="h-event"><span class="lead-icon" aria-hidden="true">3<br>JUL</span><div class="text"><p class="title p-name">Summer trail day</p><p class="support"><time class="dt-start" datetime="2027-07-03">3 July 2027</time> · <span class="p-location">Lago di Livigno</span></p><p class="support p-summary">Sample event: guided walks for all levels.</p></div></li>
+          <li class="h-event"><span class="lead-icon" aria-hidden="true">21<br>AUG</span><div class="text"><p class="title p-name">Mountain bike weekend</p><p class="support"><time class="dt-start" datetime="2027-08-21">21 August 2027</time> · <span class="p-location">Bike park</span></p><p class="support p-summary">Sample event: rides and tips from local guides.</p></div></li>
+        </ul>
         <p class="small">Sample events for the student project; real dates will come from the tourist office.</p>
       </div>
 
-      <div role="tabpanel" id="panel-faq" aria-labelledby="tab-faq" tabindex="0" hidden>
-        <h2 class="visually-hidden">Frequently asked questions</h2>
+      <div role="tabpanel" id="panel-faq" aria-labelledby="tab-faq" tabindex="0" data-tab-hidden>
+        <h3 class="no-js-only">FAQ</h3>
         <details><summary>When is the best time to visit?</summary><p>Winter for skiing and snowboarding, summer for hiking and cycling. Spring and autumn are quieter.</p></details>
         <details><summary>Do I need a car in Livigno?</summary><p>Not necessarily: the village can be explored on foot and by local bus.</p></details>
         <details><summary>Is everything duty-free?</summary><p>Most goods are sold without Italian VAT, but customs limits apply when you leave. Check them before you travel.</p></details>
@@ -127,7 +138,8 @@
       <section id="contact" aria-labelledby="contact-title">
         <h2 id="contact-title">Contact the tourist office</h2>
         <p>Ask us anything about your trip. Fields marked * are required.</p>
-        <form class="form" novalidate data-contact-form>
+        <noscript><p>The contact form needs JavaScript. You can also contact the tourist office through the <a href="https://www.livigno.eu/en/">official Livigno website</a>.</p></noscript>
+        <form class="form js-only" novalidate data-contact-form>
           <div class="field">
             <input id="name" name="name" type="text" autocomplete="name" required placeholder=" " aria-describedby="name-error">
             <label for="name">Name *</label>

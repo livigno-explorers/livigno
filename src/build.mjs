@@ -43,16 +43,21 @@ ${PAGES.map(([file, full, short, ic]) => `        <li><a href="${file}"${file ==
 }
 
 function layout({ file, title, description, body, hero = "", scripts = [], extraHead = "" }) {
+  // Without JavaScript the tabs are hidden and every panel is shown, so each panel gets its tab's name as a heading.
+  const tabNames = Object.fromEntries([...body.matchAll(/role="tab" id="(tab-[a-z]+)"[^>]*>([^<]+)</g)].map((m) => [m[1], m[2]]));
+  body = body.replace(/(<div role="tabpanel" id="panel-[a-z]+" aria-labelledby="(tab-[a-z]+)"[^>]*>)/g,
+    (all, open, tab) => `${open}\n        <h3 class="no-js-only">${tabNames[tab]}</h3>`);
   const canonical = SITE + (file === "index.html" ? "" : file);
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="utf-8">
+  <script>document.documentElement.className = "js";</script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(description)}">
   <meta name="author" content="${esc(AUTHORS.join(", "))}">
-  <meta name="theme-color" content="#2f5f7d">
+  <meta name="theme-color" content="#1f5f8b">
   <link rel="canonical" href="${canonical}">
   <meta property="og:type" content="website">
   <meta property="og:title" content="${esc(title)}">
@@ -70,13 +75,13 @@ ${extraHead}${scripts.map((s) => `  <script type="module" src="js/${s}"></script
       <a class="brand" href="index.html"><img src="img/logo.svg" alt="" width="36" height="36">Livigno</a>
       ${nav(file)}
       <span class="spacer"></span>
-      <form class="search" role="search" action="summer.html" method="get">
+      <form class="search js-only" role="search" action="summer.html" method="get">
         <label class="visually-hidden" for="site-search">Search trails</label>
         ${icon.search}
         <input id="site-search" name="q" type="search" placeholder="Search trails">
         <button type="submit" class="visually-hidden">Search</button>
       </form>
-      <a class="icon-btn search-toggle" href="summer.html#trail-search" aria-label="Search trails">${icon.search}</a>
+      <a class="icon-btn search-toggle js-only" href="summer.html#trail-search" aria-label="Search trails">${icon.search}</a>
       <a class="lang" href="${file}" hreflang="en">EN<span class="visually-hidden"> – English (current language)</span></a>
     </div>
   </header>
@@ -131,6 +136,19 @@ const banner = ({ image, alt, eyebrow = "", title, lead = "", extra = "", big = 
       </div>
     </section>`;
 
+// Static versions of the trail cards and event items (the page works without JavaScript;
+// trails.js / events.js replace them with the interactive versions).
+const TRAIL_TYPE = { hiking: "Hiking", cycling: "Cycling", mtb: "Mountain bike" };
+const trailCardStatic = (t) => `        <article class="card card-outlined">
+          ${photo(t.image, t.alt)}
+          <div class="card-body"><h3>${esc(t.name)}</h3><p class="meta">${TRAIL_TYPE[t.type]} · ${t.level}</p><p>${esc(t.text)}</p></div>
+        </article>`;
+const eventListItem = (e) => {
+  const d = new Date(`${e.start}T00:00:00`);
+  const nice = d.toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
+  return `          <li class="h-event"><span class="lead-icon" aria-hidden="true">${d.getDate()}<br>${MONTHS[d.getMonth()]}</span><div class="text"><p class="title p-name">${esc(e.name)}</p><p class="support"><time class="dt-start" datetime="${e.start}">${nice}</time> · <span class="p-location">${esc(e.location)}</span></p><p class="support p-summary">${esc(e.summary)}</p></div></li>`;
+};
+
 // Image-led activity tile (label on the photo, tagline, text, "Discover more").
 const tile = ({ image, alt, label, tagline, text, href, season = "" }) => `
         <article class="tile"${season ? ` data-season-card="${season}"` : ""}>
@@ -159,6 +177,7 @@ const ext = (href, label, cls = "btn btn-outlined") =>
 // Events shown on the home page as hCalendar (h-event). Same data as data/events.json.
 const photos = JSON.parse(fs.readFileSync(path.join(ROOT, "data/photos.json"), "utf8"));
 const events = JSON.parse(fs.readFileSync(path.join(ROOT, "data/events.json"), "utf8"));
+const trails = JSON.parse(fs.readFileSync(path.join(ROOT, "data/trails.json"), "utf8"));
 const MONTHS = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
 function eventItem(e) {
   const d = new Date(e.start + "T00:00:00");
@@ -198,11 +217,11 @@ pages["index.html"] = layout({
           <a class="btn btn-light" href="plan.html">Plan your trip</a>
           <a class="btn btn-ghost" href="#things-title">Things to do</a>
         </div>
-        <div class="segmented on-dark" role="group" aria-label="Season" data-season-switch>
+        <div class="segmented on-dark js-only" role="group" aria-label="Season" data-season-switch>
           <button type="button" aria-pressed="true" data-season="summer">Summer</button>
           <button type="button" aria-pressed="false" data-season="winter">Winter</button>
         </div>
-        <p class="status" aria-live="polite" data-season-text>Summer: hiking trails, cycling routes, lakes and a bike park.</p>`,
+        <p class="status js-only" aria-live="polite" data-season-text>Summer: hiking trails, cycling routes, lakes and a bike park.</p>`,
   }),
   body: `
     <section class="stats" aria-label="Livigno in numbers">
@@ -284,31 +303,33 @@ pages["summer.html"] = layout({
 
     <section aria-labelledby="trails-title">
       <h2 id="trails-title">Trails</h2>
-      <form class="search-bar" role="search" data-trail-form>
+      <form class="search-bar js-only" role="search" data-trail-form>
         <label class="visually-hidden" for="trail-search">Search trails by name</label>
         ${icon.search}
         <input id="trail-search" type="search" name="q" placeholder="Search trails and bike routes" autocomplete="off">
         <button type="submit" class="visually-hidden">Search</button>
       </form>
-      <fieldset class="chips" data-filter="type">
+      <fieldset class="chips js-only" data-filter="type">
         <legend>Activity</legend>
         <button type="button" class="chip" aria-pressed="false" data-value="hiking">Hiking</button>
         <button type="button" class="chip" aria-pressed="false" data-value="cycling">Cycling</button>
         <button type="button" class="chip" aria-pressed="false" data-value="mtb">Mountain bike</button>
       </fieldset>
-      <fieldset class="chips" data-filter="level">
+      <fieldset class="chips js-only" data-filter="level">
         <legend>Difficulty</legend>
         <button type="button" class="chip" aria-pressed="false" data-value="easy">Easy</button>
         <button type="button" class="chip" aria-pressed="false" data-value="medium">Medium</button>
         <button type="button" class="chip" aria-pressed="false" data-value="hard">Hard</button>
       </fieldset>
-      <p class="status" role="status" aria-live="polite" data-trail-status>Loading trails…</p>
-      <div class="grid grid-3" data-trail-list></div>
+      <p class="status" role="status" aria-live="polite" data-trail-status>${trails.length} trails.</p>
+      <div class="grid grid-3" data-trail-list>
+${trails.map(trailCardStatic).join("\n")}
+      </div>
       <p class="small">Difficulty: <strong>easy</strong> – good paths, little climbing; <strong>medium</strong> – longer, some steep parts; <strong>hard</strong> – for experienced, fit visitors. Trail data is sample data for the student project and will be checked with the tourist office.</p>
-      <noscript><p>Please turn on JavaScript to see and filter the trails.</p></noscript>
+      <noscript><p>Search, filters and "Plan my day" need JavaScript; all trails are listed above.</p></noscript>
     </section>
 
-    <section id="plan-my-day" aria-labelledby="day-title">
+    <section id="plan-my-day" class="js-only" aria-labelledby="day-title">
       <div class="section-head">
         <h2 id="day-title">Plan my day</h2>
         <button type="button" class="btn btn-text" data-clear-plan>Clear plan</button>
@@ -323,7 +344,7 @@ pages["summer.html"] = layout({
       <p class="small">Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>.</p>
     </section>
 
-    <p><a class="fab" href="#plan-my-day">${icon.add} Plan my day</a></p>`,
+    <p class="js-only"><a class="fab" href="#plan-my-day">${icon.add} Plan my day</a></p>`,
 });
 
 pages["winter.html"] = layout({
@@ -335,12 +356,12 @@ pages["winter.html"] = layout({
   hero: banner({ image: "hero-winter", alt: "Livigno valley covered in snow", eyebrow: "Winter", title: "Winter in Livigno",
     lead: "Long winters, two ski areas and a snow park. Check the conditions, compare the options and get your ski pass.",
     extra: `
-        <div class="segmented on-dark" role="group" aria-label="Winter sport" data-sport-switch>
+        <div class="segmented on-dark js-only" role="group" aria-label="Winter sport" data-sport-switch>
           <button type="button" aria-pressed="true" data-sport="ski">Skiing</button>
           <button type="button" aria-pressed="false" data-sport="board">Snowboard</button>
           <button type="button" aria-pressed="false" data-sport="xc">Cross-country</button>
         </div>
-        <p class="status" aria-live="polite" data-sport-text>Skiing: slopes for beginners and experts in both ski areas.</p>` }),
+        <p class="status js-only" aria-live="polite" data-sport-text>Skiing: slopes for beginners and experts in both ski areas.</p>` }),
   body: `
 
     <div class="split">
@@ -353,7 +374,8 @@ pages["winter.html"] = layout({
             <dt>New snow (last hour)</dt><dd data-w="snowfall">–</dd>
             <dt>Wind</dt><dd data-w="wind">–</dd>
           </dl>
-          <p class="small" role="status" aria-live="polite" data-w="updated">Loading live data…</p>
+          <p class="small" role="status" aria-live="polite" data-w="updated"><span class="js-only">Loading live data…</span></p>
+          <noscript><p class="small">Live weather needs JavaScript. See the <a href="https://open-meteo.com/en/docs#latitude=46.538&amp;longitude=10.135">Open-Meteo forecast for Livigno</a>.</p></noscript>
         </div>
         <p class="small">Live data from the Open-Meteo weather API for the Livigno valley. Slope conditions can differ – always check the official ski area information.</p>
       </section>
@@ -412,7 +434,7 @@ ${card({ variant: "outlined", image: "sciatt", alt: "Round golden cheese fritter
 ${card({ variant: "outlined", image: "bresaola", alt: "Plate with thin slices of cured meat", title: "Bresaola", meta: "Cured beef", text: "Air-dried, thinly sliced beef from the Valtellina, often served with lemon and oil." })}
         </div>
       </div>
-      <div role="tabpanel" id="panel-eat" aria-labelledby="tab-eat" tabindex="0" hidden>
+      <div role="tabpanel" id="panel-eat" aria-labelledby="tab-eat" tabindex="0" data-tab-hidden>
         <ul class="list">
           <li><span class="lead-icon" aria-hidden="true">${icon.food}</span><div class="text"><p class="title">Mountain huts (rifugi)</p><p class="support">Simple local food on the slopes and along hiking trails.</p></div></li>
           <li><span class="lead-icon" aria-hidden="true">${icon.food}</span><div class="text"><p class="title">Traditional restaurants</p><p class="support">Valtellina dishes such as pizzoccheri and sciatt.</p></div></li>
@@ -420,7 +442,7 @@ ${card({ variant: "outlined", image: "bresaola", alt: "Plate with thin slices of
         </ul>
         <p class="small">A list of restaurants with opening hours will be loaded from the tourist office data (planned for the next semester).</p>
       </div>
-      <div role="tabpanel" id="panel-shop" aria-labelledby="tab-shop" tabindex="0" hidden>
+      <div role="tabpanel" id="panel-shop" aria-labelledby="tab-shop" tabindex="0" data-tab-hidden>
         <div class="fact">
           <h3>Why are prices lower in Livigno?</h3>
           <p>Livigno is a duty-free area: Italian VAT is not charged on most goods. This is why many visitors shop for sports equipment, perfume or chocolate here. Check the customs allowances before you travel home.</p>
@@ -463,7 +485,7 @@ pages["plan.html"] = layout({
         </ul>
       </div>
 
-      <div role="tabpanel" id="panel-stay" aria-labelledby="tab-stay" tabindex="0" hidden>
+      <div role="tabpanel" id="panel-stay" aria-labelledby="tab-stay" tabindex="0" data-tab-hidden>
         <div class="grid grid-3">
 ${card({ variant: "outlined", image: "village", alt: "Hotels in the village", title: "Hotels", meta: "In the village centre", text: "From family hotels to wellness hotels." })}
 ${card({ variant: "outlined", image: "hero-summer", alt: "Houses in the green valley", title: "Apartments", meta: "Self-catering", text: "Good for families and longer stays." })}
@@ -471,14 +493,15 @@ ${card({ variant: "outlined", image: "hut", alt: "Mountain hut on a hiking route
         </div>
       </div>
 
-      <div role="tabpanel" id="panel-events" aria-labelledby="tab-events" tabindex="0" hidden>
-        <p class="status" role="status" aria-live="polite" data-events-status>Loading events…</p>
-        <ul class="list" data-events-list></ul>
+      <div role="tabpanel" id="panel-events" aria-labelledby="tab-events" tabindex="0" data-tab-hidden>
+        <p class="status" role="status" aria-live="polite" data-events-status>${events.length} events.</p>
+        <ul class="list" data-events-list>
+${events.map(eventListItem).join("\n")}
+        </ul>
         <p class="small">Sample events for the student project; real dates will come from the tourist office.</p>
       </div>
 
-      <div role="tabpanel" id="panel-faq" aria-labelledby="tab-faq" tabindex="0" hidden>
-        <h2 class="visually-hidden">Frequently asked questions</h2>
+      <div role="tabpanel" id="panel-faq" aria-labelledby="tab-faq" tabindex="0" data-tab-hidden>
         <details><summary>When is the best time to visit?</summary><p>Winter for skiing and snowboarding, summer for hiking and cycling. Spring and autumn are quieter.</p></details>
         <details><summary>Do I need a car in Livigno?</summary><p>Not necessarily: the village can be explored on foot and by local bus.</p></details>
         <details><summary>Is everything duty-free?</summary><p>Most goods are sold without Italian VAT, but customs limits apply when you leave. Check them before you travel.</p></details>
@@ -489,7 +512,8 @@ ${card({ variant: "outlined", image: "hut", alt: "Mountain hut on a hiking route
       <section id="contact" aria-labelledby="contact-title">
         <h2 id="contact-title">Contact the tourist office</h2>
         <p>Ask us anything about your trip. Fields marked * are required.</p>
-        <form class="form" novalidate data-contact-form>
+        <noscript><p>The contact form needs JavaScript. You can also contact the tourist office through the <a href="https://www.livigno.eu/en/">official Livigno website</a>.</p></noscript>
+        <form class="form js-only" novalidate data-contact-form>
           <div class="field">
             <input id="name" name="name" type="text" autocomplete="name" required placeholder=" " aria-describedby="name-error">
             <label for="name">Name *</label>

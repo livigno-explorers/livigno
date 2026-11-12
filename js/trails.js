@@ -115,5 +115,5 @@ try {
   render();
 } catch (error) {
   console.error(error);
-  status.textContent = "Sorry, the trails could not be loaded. Please try again later.";
+  status.textContent = "The trails could not be updated right now, so the saved list is shown. Filters are not available.";
 }

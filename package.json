@@ -1,0 +1,13 @@
+{
+  "name": "livigno",
+  "private": true,
+  "description": "Livigno regional tourism website – student project, CZU Prague",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "test": "playwright test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@playwright/test": "1.63.0"
+  }
+}

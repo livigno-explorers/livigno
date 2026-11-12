@@ -45,5 +45,5 @@ try {
   status.textContent = `${events.length} events.`;
 } catch (error) {
   console.error(error);
-  status.textContent = "Sorry, the events could not be loaded. Please try again later.";
+  status.textContent = "The events could not be updated right now, so the saved list is shown.";
 }
