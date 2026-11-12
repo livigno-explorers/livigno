@@ -402,7 +402,7 @@ pages["winter.html"] = layout({
       <div class="grid grid-3">
 ${card({ image: "ski", alt: "Skier on a wide slope", title: "Carosello 3000", meta: "Ski area", text: "One of the two big ski areas of Livigno." })}
 ${card({ image: "snowpark", alt: "Snowboarder in a snow park", title: "Mottolino", meta: "Ski area · snow park", text: "The second ski area, with a snow park for freestyle." })}
-${card({ image: "ski-school", alt: "Training slope with small flags", title: "Ski and snowboard schools", meta: "Lessons for all levels", text: "Group and private lessons for children and adults." })}
+${card({ image: "ski-school", alt: "Two ski instructors in blue uniforms looking over a snowy valley", title: "Ski and snowboard schools", meta: "Lessons for all levels", text: "Group and private lessons for children and adults." })}
       </div>
       <div class="btn-row">
         ${ext("https://www.livigno.eu/en", "Buy ski pass", "btn btn-filled")}
@@ -576,7 +576,7 @@ pages["sources.html"] = layout({
           <tbody>
 ${photos.map((p) => `            <tr><th scope="row">${esc(p.shows)}</th>${p.author
   ? `<td>${esc(p.author)}</td><td>${p.licenceUrl ? `<a href="${esc(p.licenceUrl)}">${esc(p.licence)}</a>` : esc(p.licence)}</td><td>${p.source ? `<a href="${esc(p.source)}">Link</a>` : "–"}</td>`
-  : '<td colspan="3">Placeholder drawing by the authors – photo will be added</td>'}</tr>`).join("\n")}
+  : '<td colspan="3">Credit to be added (source being checked)</td>'}</tr>`).join("\n")}
           </tbody>
         </table>
       </section>
