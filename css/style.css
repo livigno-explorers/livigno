@@ -50,6 +50,12 @@ body {
   background: var(--md-surface);
 }
 
+/* Faint mountain photo behind every page (pre-lightened so all text keeps WCAG AA contrast). */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1;
+  background: var(--md-surface) url("../img/bg-mountains.jpg") center top / cover no-repeat;
+}
+
 img, svg { display: block; max-width: 100%; height: auto; }
 a { color: var(--md-primary); }
 a:hover { text-decoration-thickness: 2px; }
@@ -366,11 +372,11 @@ thead th { font-weight: 500; color: var(--md-on-surface-variant); border-bottom-
 .field { position: relative; }
 .field input, .field textarea {
   width: 100%; padding: 16px; border: 1px solid var(--md-outline); border-radius: var(--r-xs);
-  background: transparent; font: inherit; color: var(--md-on-surface);
+  background: #fff; font: inherit; color: var(--md-on-surface);
 }
 .field textarea { min-height: 128px; resize: vertical; }
 .field > label {
-  position: absolute; left: 12px; top: 16px; padding: 0 4px; background: var(--md-surface);
+  position: absolute; left: 12px; top: 16px; padding: 0 4px; background: #fff;
   color: var(--md-on-surface-variant); pointer-events: none; transition: all .15s ease;
 }
 .field input:focus, .field textarea:focus { outline: none; border: 2px solid var(--md-primary); padding: 15px; }

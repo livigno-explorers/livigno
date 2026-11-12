@@ -14,5 +14,6 @@
   {"file": "cheese", "shows": "Mountain cheese", "search": "Bitto cheese", "author": "", "licence": "", "licenceUrl": "", "source": ""},
   {"file": "village", "shows": "Livigno village / houses", "search": "Livigno village", "author": "", "licence": "", "licenceUrl": "", "source": ""},
   {"file": "hut", "shows": "Mountain hut (rifugio)", "search": "rifugio Livigno", "author": "", "licence": "", "licenceUrl": "", "source": ""},
-  {"file": "bakery", "shows": "Buckwheat bread (Food page, Bakery)", "search": "buckwheat bread", "author": "", "licence": "", "licenceUrl": "", "source": ""}
+  {"file": "bakery", "shows": "Buckwheat bread (Food page, Bakery)", "search": "buckwheat bread", "author": "", "licence": "", "licenceUrl": "", "source": ""},
+  {"file": "bg-mountains", "shows": "Page background: Livigno valley and ski slopes in winter (faint)", "search": "Livigno ski slopes panorama", "author": "", "licence": "", "licenceUrl": "", "source": ""}
 ]
