@@ -86,11 +86,11 @@ ${extraHead}${scripts.map((s) => `  <script type="module" src="js/${s}"></script
       <a class="brand" href="index.html"><img src="img/logo.jpg" alt="" width="40" height="40">Livigno</a>
       ${nav(file)}
       <span class="spacer"></span>
-      <form class="search js-only" role="search" action="summer.html" method="get">
+      <form class="search js-only" role="search" aria-label="Quick search" action="summer.html" method="get">
         <label class="visually-hidden" for="site-search">Search trails</label>
         ${icon.search}
         <input id="site-search" name="q" type="search" placeholder="Search trails">
-        <button type="submit" class="visually-hidden">Search</button>
+        <button type="submit" class="search-submit">Search</button>
       </form>
       <a class="icon-btn search-toggle js-only" href="summer.html#trail-search" aria-label="Search trails">${icon.search}</a>
       ${langSwitch(file, "en")}
@@ -120,6 +120,7 @@ ${body}
         <h2>About this site</h2>
         <ul>
           <li><a href="sources.html">Sources &amp; image credits</a></li>
+          <li><a href="accessibility.html">Accessibility statement</a></li>
           <li><a href="plan.html#contact">Contact form</a></li>
           <li><a href="sitemap.xml">Sitemap (XML)</a></li>
         </ul>
@@ -314,11 +315,11 @@ pages["summer.html"] = layout({
 
     <section aria-labelledby="trails-title">
       <h2 id="trails-title">Trails</h2>
-      <form class="search-bar js-only" role="search" data-trail-form>
+      <form class="search-bar js-only" role="search" aria-label="Filter the trail list" data-trail-form>
         <label class="visually-hidden" for="trail-search">Search trails by name</label>
         ${icon.search}
         <input id="trail-search" type="search" name="q" placeholder="Search trails and bike routes" autocomplete="off">
-        <button type="submit" class="visually-hidden">Search</button>
+        <button type="submit" class="search-submit">Search</button>
       </form>
       <fieldset class="chips js-only" data-filter="type">
         <legend>Activity</legend>
@@ -393,7 +394,7 @@ pages["winter.html"] = layout({
 
       <section aria-labelledby="pass-title">
         <h2 id="pass-title">Ski pass options</h2>
-        <div class="table-wrap">
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Typical ski pass types">
           <table>
             <caption>Typical ski pass types</caption>
             <thead><tr><th scope="col">Pass</th><th scope="col">Good for</th></tr></thead>
@@ -586,13 +587,75 @@ pages["sources.html"] = layout({
           <thead><tr><th scope="col">Photo</th><th scope="col">Author</th><th scope="col">Licence</th><th scope="col">Source</th></tr></thead>
           <tbody>
 ${photos.map((p) => `            <tr><th scope="row">${esc(p.shows)}</th>${p.author
-  ? `<td>${esc(p.author)}</td><td>${p.licenceUrl ? `<a href="${esc(p.licenceUrl)}">${esc(p.licence)}</a>` : esc(p.licence)}</td><td>${p.source ? `<a href="${esc(p.source)}">Link</a>` : "–"}</td>`
+  ? `<td>${esc(p.author)}</td><td>${p.licenceUrl ? `<a href="${esc(p.licenceUrl)}">${esc(p.licence)}</a>` : esc(p.licence)}</td><td>${p.source ? `<a href="${esc(p.source)}">Link<span class="visually-hidden">,</span> <span class="visually-hidden">${esc(p.shows)}</span></a>` : "–"}</td>`
   : '<td colspan="3">Credit to be added (source being checked)</td>'}</tr>`).join("\n")}
           </tbody>
         </table>
       </section>
       <h2>Authors</h2>
       <ul>${AUTHORS.map((a) => `<li>${esc(a)}</li>`).join("")}</ul>
+    </section>`,
+});
+
+pages["accessibility.html"] = layout({
+  file: "accessibility.html",
+  title: "Accessibility statement – Livigno student project",
+  description: "How the Livigno student website was made accessible: WCAG 2.1 level AA target, WAI-ARIA, tests with W3C validators, axe and pa11y, and known limitations.",
+  scripts: ["main.js"],
+  body: `
+    <section aria-labelledby="page-title">
+      <h1 id="page-title">Accessibility statement</h1>
+      <p class="lead">We want this website to work for everyone – also for people who use a screen reader, only a keyboard, a phone, a big zoom level, or a browser with JavaScript turned off.</p>
+    </section>
+
+    <section aria-labelledby="status-title">
+      <h2 id="status-title">Conformance status</h2>
+      <p>The course asks for WCAG 2.1 level A. We aimed higher: the website aims to meet <a href="https://www.w3.org/TR/WCAG21/">WCAG 2.1</a> level AA of the W3C Web Accessibility Initiative (WAI). Our tests found no errors at level AA; the known limits are listed below.</p>
+    </section>
+
+    <section aria-labelledby="done-title">
+      <h2 id="done-title">What we did</h2>
+      <ul>
+        <li>Semantic HTML5 with landmarks (header, navigation, main, footer), one h1 per page and no skipped heading levels.</li>
+        <li>WAI-ARIA only where HTML has no element of its own: tabs, toggle buttons, live status messages and form errors.</li>
+        <li>Everything works with the keyboard; the focus is always visible and never hidden behind the sticky menu.</li>
+        <li>Text contrast of at least 4.5:1, also for text on photos.</li>
+        <li>All content can be read with JavaScript turned off.</li>
+        <li>Pages work from 320 px wide and at 200 % zoom without scrolling sideways.</li>
+        <li>English, Italian and German pages, each with the correct language set for screen readers.</li>
+        <li>Animations are switched off when the visitor prefers reduced motion.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="tested-title">
+      <h2 id="tested-title">How we tested</h2>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Accessibility tests">
+        <table>
+          <caption>Accessibility tests</caption>
+          <thead><tr><th scope="col">Tool or method</th><th scope="col">Result</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">W3C Nu Html Checker and W3C CSS Validator</th><td>0 errors</td></tr>
+            <tr><th scope="row">axe-core (WCAG 2.2 AA and best practices), every page in 3 sizes</th><td>0 violations</td></tr>
+            <tr><th scope="row">pa11y with HTML_CodeSniffer (WCAG 2 AA)</th><td>0 errors</td></tr>
+            <tr><th scope="row">Lighthouse accessibility</th><td>100</td></tr>
+            <tr><th scope="row">Keyboard only, tested with automated end-to-end tests</th><td>Every control can be reached; focus always visible</td></tr>
+            <tr><th scope="row">Contrast of text on photos, measured on screenshots</th><td>At least 4.5:1 (large text at least 3:1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="limits-title">
+      <h2 id="limits-title">Known limitations</h2>
+      <ul>
+        <li>The map comes from OpenStreetMap; we cannot change it. The same route information is written as text under "Getting there" on the Plan page.</li>
+        <li>The Italian and German texts have not yet been checked by a native speaker.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="feedback-title">
+      <h2 id="feedback-title">Feedback</h2>
+      <p>If something does not work for you, please tell us through the <a href="plan.html#contact">contact form</a>. This statement was written on 26 November 2026.</p>
     </section>`,
 });
 
@@ -617,7 +680,7 @@ for (const [file, html] of Object.entries(pages)) fs.writeFileSync(path.join(ROO
 // ---------- translated versions (Italian, German) ----------
 // Every visible text and every alt / aria-label / placeholder / title / meta text is looked up in
 // src/i18n/pages.<lang>.json. The build stops if a text has no translation, so no page is left half in English.
-const KEEP = new Set(["Livigno", "EN", "IT", "DE", "English", "Italiano", "Deutsch", "APT Livigno", "Carosello 3000", "Mottolino",
+const KEEP = new Set(["Livigno", "WCAG 2.1", "EN", "IT", "DE", "English", "Italiano", "Deutsch", "APT Livigno", "Carosello 3000", "Mottolino",
   "Pizzoccheri", "Sciatt", "Bresaola", "Lago di Livigno", "Dmitrii Filatov", "Unsplash License", "≈ 115 km",
   "Livigno. In:", "Wikipedia: the free encyclopedia", "APT LIVIGNO.", "Winter Olympic Games Milano Cortina 2026", "OPEN-METEO.", "Free Weather API",
   "OPENSTREETMAP CONTRIBUTORS.", "OpenStreetMap", "GOOGLE.", "Material Design 3", "website", "#1f5f8b", "width=device-width, initial-scale=1",
@@ -684,10 +747,10 @@ if (missing.size) {
 }
 fs.writeFileSync(path.join(ROOT, "img", "logo.svg"), logo);
 
-const today = "2026-11-12";
+const today = "2026-11-26";
 fs.writeFileSync(path.join(ROOT, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${[...PAGES.map((p) => p[0]), "sources.html"].flatMap((f) => LANGS.map((l) => `  <url><loc>${SITE}${pageUrl(f, l)}</loc><lastmod>${today}</lastmod></url>`)).join("\n")}
+${[...PAGES.map((p) => p[0]), "sources.html", "accessibility.html"].flatMap((f) => LANGS.map((l) => `  <url><loc>${SITE}${pageUrl(f, l)}</loc><lastmod>${today}</lastmod></url>`)).join("\n")}
 </urlset>
 `);
 fs.writeFileSync(path.join(ROOT, "robots.txt"), `User-agent: *\nAllow: /\nSitemap: ${SITE}sitemap.xml\n`);

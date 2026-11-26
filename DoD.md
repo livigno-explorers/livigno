@@ -4,8 +4,8 @@
 
 | # | Item | How we check it |
 |---|---|---|
-| 1 | Every acceptance criterion of the increment was checked by hand at desktop and phone width, and no page scrolls sideways. | Browser, 1280 px and 375 px + the "Layout" test |
-| 2 | `npm test` passes (all end-to-end tests, including 0 axe WCAG 2.1 A/AA violations and 0 console errors). | `npm test` |
+| 1 | Every acceptance criterion of the increment was checked by hand at desktop and phone width; no page scrolls sideways (also at 320 px); everything works with the keyboard only. | Browser, 1280 px and 375 px + the "Layout" and "Keyboard" tests |
+| 2 | `npm test` passes (all end-to-end tests, including 0 axe WCAG 2.2 AA and best-practice violations and 0 console errors). | `npm test` |
 | 3 | W3C shows 0 errors for every changed HTML page and for `css/style.css`. | validator.w3.org/nu, jigsaw.w3.org/css-validator |
 | 4 | All page content can be read with JavaScript turned off. | Browser with JavaScript disabled + the "Without JavaScript" test |
 | 5 | Lighthouse performance is at least 85 on mobile for every changed page. | Chrome DevTools → Lighthouse (mobile) |

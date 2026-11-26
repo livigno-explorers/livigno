@@ -25,6 +25,7 @@ Then open the address it prints (for example http://localhost:3000).
 | Food & local | `food.html` |
 | Plan your visit | `plan.html` |
 | Sources & image credits | `sources.html` |
+| Accessibility statement | `accessibility.html` |
 | Page not found | `404.html` |
 
 ## How the Part 2 requirements are met
@@ -33,7 +34,7 @@ Then open the address it prints (for example http://localhost:3000).
 |---|---|---|
 | Based on the Part 1 prototype | Same 5 pages, menu, components and layouts as the Part 1 wireframes | all pages |
 | Fully responsive (mobile, tablet, desktop) | Material Design 3 window size classes: navigation bar at the bottom (< 600 px), navigation rail (600–839 px), top bar with horizontal tabs (≥ 840 px) | `css/style.css` (media queries) |
-| WCAG 2.1 level A | Skip link, landmarks, one `h1` per page, alt text, labels on all form fields, visible focus, keyboard tabs, errors next to the field, `prefers-reduced-motion`. Tested with axe-core: **0 violations** (WCAG 2.0/2.1 A and AA) on 7 pages × 3 sizes | all pages |
+| WCAG 2.1 level A (we aimed for AA) | Skip link, landmarks, one `h1` per page, alt text, labels on all form fields, visible focus that is never hidden under the sticky menu, keyboard tabs, errors next to the field, contrast ≥ 4.5:1 also on photos, works at 320 px / 400 % zoom, `prefers-reduced-motion`. Tested: axe-core WCAG 2.2 AA + best practices **0 violations** (24 pages × 3 sizes), pa11y/HTML_CodeSniffer AA **0 errors**, Lighthouse accessibility **100**, keyboard tests in `npm test`. Details: `accessibility.html` | all pages |
 | HTML5 + WAI-ARIA | `header`, `nav`, `main`, `footer`, `section`, `article`, `time`; ARIA tabs pattern (`role="tablist/tab/tabpanel"`, `aria-selected`, arrow keys), `aria-current="page"`, `aria-pressed` on chips and segmented buttons, `aria-live` status messages, `aria-invalid` + `aria-describedby` in the form | `js/main.js`, `js/contact.js` |
 | Valid HTML5 and CSS3 | Checked with html-validate (0 errors) and stylelint (0 errors). Before submitting, also check with https://validator.w3.org and https://jigsaw.w3.org/css-validator/ | – |
 | Flex and Grid | **Grid:** page sections, card grids, `.split` layout, footer, carousel. **Flexbox:** app bar, navigation, chips, buttons, lists, card actions | `css/style.css` |
@@ -58,11 +59,12 @@ Then open the address it prints (for example http://localhost:3000).
 ```sh
 npm install                      # @playwright/test + @axe-core/playwright (pinned versions)
 npx playwright install chromium  # once
-npm test                         # 114 tests (desktop + mobile, all 3 languages)
+npm test                         # 142 tests (desktop + mobile, all 3 languages)
 ```
 
 The tests check every acceptance criterion in `PRD.md`: no console errors, one `h1`, the student notice,
-0 axe (WCAG 2.1 A/AA) violations on every page, navigation, trail filters, "Plan my day", weather API
+0 axe (WCAG 2.2 AA + best practices) violations on every page, keyboard (every focus visible, never under the
+sticky menu, skip link works), no sideways scrolling from 320 px and with bigger text spacing, navigation, trail filters, "Plan my day", weather API
 (answered by the test, no network needed), tabs with arrow keys, form validation, and the site with
 JavaScript turned off. Plan: `PRD.md` · Definition of Done: `DoD.md` · Reflection: `REFLECTION.md`.
 
@@ -82,7 +84,8 @@ Screen readers use JavaScript normally, so they get the full interactive version
 ## Project structure
 
 ```text
-index.html, summer.html, winter.html, food.html, plan.html, sources.html, 404.html
+index.html, summer.html, winter.html, food.html, plan.html, sources.html, accessibility.html, 404.html
+*-it.html, *-de.html  Italian and German versions (built)
 css/style.css        design (Material Design 3 tokens, responsive)
 js/api.js            all data requests (AJAX) + API addresses
 js/main.js           tabs, segmented buttons (all pages)
@@ -98,6 +101,12 @@ sitemap.xml, robots.txt
 ```
 
 To change the shared header or footer, edit `src/build.mjs` and run `node src/build.mjs`.
+
+## How we worked
+
+We planned in small increments (`PRD.md`), agreed on one Definition of Done (`DoD.md`) and checked every increment
+against it before committing. We also used an AI coding assistant to draft code and texts; every change was reviewed,
+tested and, where needed, corrected by us – see `REFLECTION.md` for the bugs our checks caught.
 
 ## Notes
 

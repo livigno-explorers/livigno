@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.className = "js";</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility statement – Livigno student project</title>
+  <meta name="description" content="How the Livigno student website was made accessible: WCAG 2.1 level AA target, WAI-ARIA, tests with W3C validators, axe and pa11y, and known limitations.">
+  <meta name="author" content="Magadeline Ndlovu, Sobin Karakkunnummel, Gayathri Devi Shalini Dileep, Monika Tasheva">
+  <meta name="theme-color" content="#1f5f8b">
+  <link rel="canonical" href="https://livigno-explorers.github.io/livigno/accessibility.html">
+  <link rel="alternate" hreflang="en" href="https://livigno-explorers.github.io/livigno/accessibility.html">
+  <link rel="alternate" hreflang="it" href="https://livigno-explorers.github.io/livigno/accessibility-it.html">
+  <link rel="alternate" hreflang="de" href="https://livigno-explorers.github.io/livigno/accessibility-de.html">
+  <link rel="alternate" hreflang="x-default" href="https://livigno-explorers.github.io/livigno/accessibility.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Accessibility statement – Livigno student project">
+  <meta property="og:description" content="How the Livigno student website was made accessible: WCAG 2.1 level AA target, WAI-ARIA, tests with W3C validators, axe and pa11y, and known limitations.">
+  <meta property="og:url" content="https://livigno-explorers.github.io/livigno/accessibility.html">
+  <meta property="og:image" content="https://livigno-explorers.github.io/livigno/img/photos/hero-summer.jpg">
+  <link rel="icon" href="img/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header>
+    <p class="notice" role="note">Student project – for teaching purposes only · CZU Prague · not an official website of Livigno</p>
+    <div class="app-bar">
+      <a class="brand" href="index.html"><img src="img/logo.jpg" alt="" width="40" height="40">Livigno</a>
+      <nav class="main-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 11h3v9h5v-6h4v6h5v-9h3z"/></svg></span><span class="short">Home</span><span class="full">Home</span></a></li>
+        <li><a href="summer.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M11 1h2v4h-2zM11 19h2v4h-2zM1 11h4v2H1zM19 11h4v2h-4zM4.2 5.6l1.4-1.4 2.8 2.8-1.4 1.4zM15.6 17l1.4-1.4 2.8 2.8-1.4 1.4zM4.2 18.4 7 15.6 8.4 17l-2.8 2.8zM15.6 7 18.4 4.2l1.4 1.4L17 8.4z"/></svg></span><span class="short">Summer</span><span class="full">Summer</span></a></li>
+        <li><a href="winter.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 1h2v22h-2z"/><path d="M2.3 6.5l1-1.7 18.4 12.7-1 1.7z"/><path d="M20.7 4.8l1 1.7L3.3 19.2l-1-1.7z"/><path d="M8.5 2.5 12 6l3.5-3.5 1.4 1.4L12 8.8 7.1 3.9zM8.5 21.5 12 18l3.5 3.5 1.4-1.4L12 15.2l-4.9 4.9z"/></svg></span><span class="short">Winter</span><span class="full">Winter</span></a></li>
+        <li><a href="food.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v7a2 2 0 0 1-1 1.7V22H6V10.7A2 2 0 0 1 5 9V2h2v6h0zM3 2h2v7H3zM9 2h2v7H9zM16 2c2.8 0 4 3 4 7 0 2-1 3-2 3.5V22h-2z"/></svg></span><span class="short">Food</span><span class="full">Food &amp; local</span></a></li>
+        <li><a href="plan.html"><span class="ind"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 9 2 3 4v18l6-2 6 2 6-2V2zM9 4.2l6 2v13.6l-6-2z"/></svg></span><span class="short">Plan</span><span class="full">Plan your visit</span></a></li>
+      </ul>
+    </nav>
+      <span class="spacer"></span>
+      <form class="search js-only" role="search" aria-label="Quick search" action="summer.html" method="get">
+        <label class="visually-hidden" for="site-search">Search trails</label>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
+        <input id="site-search" name="q" type="search" placeholder="Search trails">
+        <button type="submit" class="search-submit">Search</button>
+      </form>
+      <a class="icon-btn search-toggle js-only" href="summer.html#trail-search" aria-label="Search trails"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
+      <nav class="lang-switch" aria-label="Language"><a href="accessibility.html" hreflang="en" lang="en" aria-current="true">EN<span class="visually-hidden"> English</span></a><a href="accessibility-it.html" hreflang="it" lang="it">IT<span class="visually-hidden"> Italiano</span></a><a href="accessibility-de.html" hreflang="de" lang="de">DE<span class="visually-hidden"> Deutsch</span></a></nav>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="page">
+
+    <section aria-labelledby="page-title">
+      <h1 id="page-title">Accessibility statement</h1>
+      <p class="lead">We want this website to work for everyone – also for people who use a screen reader, only a keyboard, a phone, a big zoom level, or a browser with JavaScript turned off.</p>
+    </section>
+
+    <section aria-labelledby="status-title">
+      <h2 id="status-title">Conformance status</h2>
+      <p>The course asks for WCAG 2.1 level A. We aimed higher: the website aims to meet <a href="https://www.w3.org/TR/WCAG21/">WCAG 2.1</a> level AA of the W3C Web Accessibility Initiative (WAI). Our tests found no errors at level AA; the known limits are listed below.</p>
+    </section>
+
+    <section aria-labelledby="done-title">
+      <h2 id="done-title">What we did</h2>
+      <ul>
+        <li>Semantic HTML5 with landmarks (header, navigation, main, footer), one h1 per page and no skipped heading levels.</li>
+        <li>WAI-ARIA only where HTML has no element of its own: tabs, toggle buttons, live status messages and form errors.</li>
+        <li>Everything works with the keyboard; the focus is always visible and never hidden behind the sticky menu.</li>
+        <li>Text contrast of at least 4.5:1, also for text on photos.</li>
+        <li>All content can be read with JavaScript turned off.</li>
+        <li>Pages work from 320 px wide and at 200 % zoom without scrolling sideways.</li>
+        <li>English, Italian and German pages, each with the correct language set for screen readers.</li>
+        <li>Animations are switched off when the visitor prefers reduced motion.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="tested-title">
+      <h2 id="tested-title">How we tested</h2>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Accessibility tests">
+        <table>
+          <caption>Accessibility tests</caption>
+          <thead><tr><th scope="col">Tool or method</th><th scope="col">Result</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">W3C Nu Html Checker and W3C CSS Validator</th><td>0 errors</td></tr>
+            <tr><th scope="row">axe-core (WCAG 2.2 AA and best practices), every page in 3 sizes</th><td>0 violations</td></tr>
+            <tr><th scope="row">pa11y with HTML_CodeSniffer (WCAG 2 AA)</th><td>0 errors</td></tr>
+            <tr><th scope="row">Lighthouse accessibility</th><td>100</td></tr>
+            <tr><th scope="row">Keyboard only, tested with automated end-to-end tests</th><td>Every control can be reached; focus always visible</td></tr>
+            <tr><th scope="row">Contrast of text on photos, measured on screenshots</th><td>At least 4.5:1 (large text at least 3:1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section aria-labelledby="limits-title">
+      <h2 id="limits-title">Known limitations</h2>
+      <ul>
+        <li>The map comes from OpenStreetMap; we cannot change it. The same route information is written as text under "Getting there" on the Plan page.</li>
+        <li>The Italian and German texts have not yet been checked by a native speaker.</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="feedback-title">
+      <h2 id="feedback-title">Feedback</h2>
+      <p>If something does not work for you, please tell us through the <a href="plan.html#contact">contact form</a>. This statement was written on 26 November 2026.</p>
+    </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page">
+      <div>
+        <h2>Livigno – mountain adventure all year round</h2>
+        <p><strong>Authors:</strong> Magadeline Ndlovu, Sobin Karakkunnummel, Gayathri Devi Shalini Dileep, Monika Tasheva</p>
+        <p>Student project for the course Internet Technologies – Client Side, Czech University of Life Sciences Prague, 2026. For teaching purposes only.</p>
+      </div>
+      <div class="h-card">
+        <h2>Tourist information</h2>
+        <p><a class="p-name u-url" href="https://www.livigno.eu/en">APT Livigno</a> (official site)</p>
+        <p class="p-adr h-adr"><span class="p-locality">Livigno</span>, <span class="p-region">Lombardy</span>, <span class="p-country-name">Italy</span></p>
+        <p class="p-geo h-geo">Coordinates: <span class="p-latitude">46.538</span>, <span class="p-longitude">10.135</span></p>
+      </div>
+      <div>
+        <h2>About this site</h2>
+        <ul>
+          <li><a href="sources.html">Sources &amp; image credits</a></li>
+          <li><a href="accessibility.html">Accessibility statement</a></li>
+          <li><a href="plan.html#contact">Contact form</a></li>
+          <li><a href="sitemap.xml">Sitemap (XML)</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

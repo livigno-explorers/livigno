@@ -79,7 +79,17 @@ Story: As an Italian- or German-speaking visitor, I want to read the site in my 
 - When JavaScript writes a message (trail status, form errors, weather), then it is in the page's language.
 - When the site is built, then the build stops if any text has no Italian or German translation.
 
-### P10: Back end – status: planned (next semester)
+### P10: Accessibility check and statement – status: done
+Story: As a visitor who uses a screen reader, a keyboard only or a big zoom, I want every page to work for me,
+and I want to know what was tested.
+- When I press Tab through a page, then every focused element is visible, has a focus ring and is not hidden under the sticky menu.
+- When the window is 320 px wide (= 400 % zoom), then no page scrolls sideways.
+- When letter, word and line spacing are increased (WCAG 1.4.12), then no text is cut off and nothing scrolls sideways.
+- When white text sits on a photo, then its contrast is at least 4.5:1, measured on screenshots.
+- When axe checks a page (WCAG 2.2 AA + best practices), then there are 0 violations.
+- When I open the footer link "Accessibility statement", then I see the target (WCAG 2.1 AA), how we tested and the known limits.
+
+### P11: Back end – status: planned (next semester)
 Story: As the tourist office, I want to manage trails and events and receive contact messages.
 
 ## 6. Decisions and changes
@@ -97,3 +107,7 @@ Story: As the tourist office, I want to manage trails and events and receive con
 | 2026-11-12 | Mountain photo as page background, text on frosted panels | Team wanted a real-looking background; panels keep WCAG contrast |
 | 2026-11-12 | Italian and German pages (`index-it.html`, `index-de.html`, …) built from dictionaries in `src/i18n/` | Livigno is in Italy and many visitors speak German; English stays the default |
 | 2026-11-12 | Header search becomes an icon between 840 and 1199 px | New overflow test found sideways scrolling at those widths |
+| 2026-11-26 | Target WCAG 2.1 level AA (the course asks for level A) | Lecture on Web Accessibility; AA is the level used by the EU accessibility rules |
+| 2026-11-26 | Dark gradient behind the text on the big photos | Our screenshot test measured white text on bright snow at only 2.97:1 |
+| 2026-11-26 | Keyboard, zoom and text-spacing tests added to `npm test` | Our statement says "keyboard works"; we wanted a test that proves it |
+| 2026-11-26 | New page `accessibility.html`, linked in the footer | W3C WAI recommends an accessibility statement |

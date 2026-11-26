@@ -39,11 +39,11 @@
       </ul>
     </nav>
       <span class="spacer"></span>
-      <form class="search js-only" role="search" action="summer-it.html" method="get">
+      <form class="search js-only" role="search" aria-label="Ricerca rapida" action="summer-it.html" method="get">
         <label class="visually-hidden" for="site-search">Cerca percorsi</label>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
         <input id="site-search" name="q" type="search" placeholder="Cerca percorsi">
-        <button type="submit" class="visually-hidden">Cerca</button>
+        <button type="submit" class="search-submit">Cerca</button>
       </form>
       <a class="icon-btn search-toggle js-only" href="summer-it.html#trail-search" aria-label="Cerca percorsi"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
       <nav class="lang-switch" aria-label="Lingua"><a href="summer.html" hreflang="en" lang="en">EN<span class="visually-hidden"> English</span></a><a href="summer-it.html" hreflang="it" lang="it" aria-current="true">IT<span class="visually-hidden"> Italiano</span></a><a href="summer-de.html" hreflang="de" lang="de">DE<span class="visually-hidden"> Deutsch</span></a></nav>
@@ -64,11 +64,11 @@
 
     <section aria-labelledby="trails-title">
       <h2 id="trails-title">Percorsi</h2>
-      <form class="search-bar js-only" role="search" data-trail-form>
+      <form class="search-bar js-only" role="search" aria-label="Filtra l'elenco dei percorsi" data-trail-form>
         <label class="visually-hidden" for="trail-search">Cerca percorsi per nome</label>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
         <input id="trail-search" type="search" name="q" placeholder="Cerca sentieri e percorsi in bici" autocomplete="off">
-        <button type="submit" class="visually-hidden">Cerca</button>
+        <button type="submit" class="search-submit">Cerca</button>
       </form>
       <fieldset class="chips js-only" data-filter="type">
         <legend>Attività</legend>
@@ -149,6 +149,7 @@
         <h2>Su questo sito</h2>
         <ul>
           <li><a href="sources-it.html">Fonti e crediti delle immagini</a></li>
+          <li><a href="accessibility-it.html">Dichiarazione di accessibilità</a></li>
           <li><a href="plan-it.html#contact">Modulo di contatto</a></li>
           <li><a href="sitemap.xml">Mappa del sito (XML)</a></li>
         </ul>

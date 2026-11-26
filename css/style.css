@@ -39,7 +39,9 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; } /* focused elements never hide under the sticky bar (WCAG 2.4.11) */
+
+@media (width < 600px) { html { scroll-padding-bottom: 96px; } } /* … or under the bottom menu on phones */
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
@@ -177,6 +179,8 @@ section { margin-top: 40px; }
 .hero-inner {
   position: relative; z-index: 1; width: 100%; max-width: var(--content-max); margin: 0 auto;
   padding: 48px var(--margin) 40px; text-shadow: 0 1px 3px rgb(0 0 0 / .5);
+  /* Scrim behind the text: with the overlay above, white text stays ≥ 4.5:1 even over bright snow or sky. */
+  background: linear-gradient(180deg, rgb(0 0 0 / 0) 0, rgb(0 0 0 / .48) 40px, rgb(0 0 0 / .55) 100%);
 }
 .photo-hero h1 {
   margin: 0 0 12px; max-width: 18ch; text-transform: uppercase; letter-spacing: .01em; line-height: 1.05;
@@ -328,6 +332,16 @@ section { margin-top: 40px; }
 .chip[aria-pressed="true"]::before { content: "✓"; }
 
 /* ---------- search bar (in page) ---------- */
+/* Submit button for the search fields: hidden until it gets keyboard focus, then shown (WCAG 2.4.7). */
+.search-submit:not(:focus) {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+.search-submit:focus {
+  position: absolute; right: 6px; top: 50%; transform: translateY(-50%); z-index: 2;
+  padding: 6px 14px; border: 0; border-radius: var(--r-full, 999px);
+  background: var(--md-primary); color: var(--md-on-primary); font: inherit; font-weight: 500;
+}
 .search-bar { position: relative; margin-top: 8px; }
 .search-bar input {
   width: 100%; height: 56px; padding: 0 16px 0 52px; border: 0; border-radius: var(--r-full);
@@ -363,7 +377,7 @@ section { margin-top: 40px; }
 [role="tabpanel"][hidden] { display: none; }
 
 /* ---------- data table ---------- */
-.table-wrap { overflow-x: auto; }
+.table-wrap { overflow-x: auto; position: relative; } /* keeps visually-hidden text inside the scroll box */
 table { width: 100%; border-collapse: collapse; }
 caption { text-align: left; font-weight: 500; padding-bottom: 8px; }
 th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--md-outline-variant); }
@@ -388,7 +402,7 @@ thead th { font-weight: 500; color: var(--md-on-surface-variant); border-bottom-
   position: absolute; left: 12px; top: 16px; padding: 0 4px; background: #fff;
   color: var(--md-on-surface-variant); pointer-events: none; transition: all .15s ease;
 }
-.field input:focus, .field textarea:focus { outline: none; border: 2px solid var(--md-primary); padding: 15px; }
+.field input:not([type="checkbox"]):focus, .field textarea:focus { outline: none; border: 2px solid var(--md-primary); padding: 15px; }
 .field > input:focus + label, .field > textarea:focus + label,
 .field > input:not(:placeholder-shown) + label, .field > textarea:not(:placeholder-shown) + label {
   top: -9px; font-size: .75rem; color: var(--md-primary);
@@ -399,6 +413,7 @@ thead th { font-weight: 500; color: var(--md-on-surface-variant); border-bottom-
 .check { display: flex; align-items: flex-start; gap: 12px; }
 .check label { color: var(--md-on-surface); }
 .check input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--md-primary); }
+.check input:focus-visible { outline: 3px solid var(--md-primary); outline-offset: 2px; }
 .form-status { padding: 12px 16px; border-radius: var(--r-s); background: var(--md-primary-container); color: var(--md-on-primary-container); }
 .form-status:empty { display: none; }
 

@@ -3,7 +3,7 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const BASE_PAGES = ["index.html", "summer.html", "winter.html", "food.html", "plan.html", "sources.html"];
+const BASE_PAGES = ["index.html", "summer.html", "winter.html", "food.html", "plan.html", "sources.html", "accessibility.html"];
 // English (default) + Italian + German versions of every page
 const PAGES = BASE_PAGES.flatMap((f) => [f, f.replace(".html", "-it.html"), f.replace(".html", "-de.html")]);
 const AUTHORS = ["Magadeline Ndlovu", "Sobin Karakkunnummel", "Gayathri Devi Shalini Dileep", "Monika Tasheva"];
@@ -32,9 +32,9 @@ test.describe("Every page", () => {
       expect(errors).toEqual([]);
     });
 
-    test(`${file}: when checked with axe, then there are 0 WCAG 2.1 A/AA violations`, async ({ page }) => {
+    test(`${file}: when checked with axe, then there are 0 WCAG 2.2 A/AA or best-practice violations`, async ({ page }) => {
       await page.goto(file);
-      const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag21a", "wcag2aa", "wcag21aa"]).analyze();
+      const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag21a", "wcag2aa", "wcag21aa", "wcag22aa", "best-practice"]).analyze();
       expect(results.violations.map((v) => v.id)).toEqual([]);
     });
   }
@@ -143,7 +143,8 @@ test.describe("Without JavaScript", () => {
 });
 
 test.describe("Layout", () => {
-  for (const width of [360, 600, 840, 1024, 1280]) {
+  // 320 px = WCAG 1.4.10 Reflow (also what 1280 px at 400 % zoom gives); 640 px = 200 % zoom.
+  for (const width of [320, 360, 600, 640, 840, 1024, 1280]) {
     test(`when the window is ${width} px wide, then no page in any language scrolls sideways`, async ({ page }) => {
       await page.setViewportSize({ width, height: 800 });
       for (const file of PAGES) {
@@ -184,4 +185,63 @@ test.describe("Languages", () => {
     await expect(page.locator("link[rel=alternate][hreflang=it]")).toHaveAttribute("href", /index-it\.html$/);
     await expect(page.locator("link[rel=alternate][hreflang=de]")).toHaveAttribute("href", /index-de\.html$/);
   });
+});
+
+test.describe("Keyboard", () => {
+  // reduced motion: no smooth scrolling, so each check sees the final position
+  test.use({ reducedMotion: "reduce" });
+  for (const file of ["index.html", "summer.html", "plan.html", "plan-de.html"]) {
+    test(`${file}: when I press Tab through the page, then every focused element is visible, outlined and not under the sticky menu`, async ({ page }) => {
+      await page.goto(file);
+      const seen = new Set();
+      for (let i = 0; i < 60; i++) {
+        await page.keyboard.press("Tab");
+        const f = await page.evaluate(() => {
+          const el = document.activeElement;
+          if (!el || el === document.body) return null;
+          const r = el.getBoundingClientRect();
+          const cs = getComputedStyle(el);
+          // WCAG 2.4.11: the element on top at the centre of the focused element must be the element itself (not the sticky menu).
+          // (for tall elements such as a tab panel: the centre of the part that is inside the window)
+          const y1 = Math.max(r.top, 0), y2 = Math.min(r.bottom, innerHeight);
+          const top = r.width && r.height && y2 > y1 ? document.elementFromPoint(r.left + r.width / 2, (y1 + y2) / 2) : null;
+          return {
+            id: el.outerHTML.slice(0, 80),
+            // a 2 px+ outline, or (text fields) a 2 px+ coloured border
+            outline: (cs.outlineStyle !== "none" && parseFloat(cs.outlineWidth) >= 2) || parseFloat(cs.borderTopWidth) >= 2,
+            visible: r.width > 0 && r.height > 0,
+            hidden: !top || !(el === top || el.contains(top) || top.contains(el) && top.tagName === "LABEL" || el.labels && [...el.labels].includes(top)),
+            inFrame: el.tagName === "IFRAME",
+            topEl: top ? top.outerHTML.slice(0, 60) + " y=" + Math.round(r.top) + ".." + Math.round(r.bottom) + " vh=" + innerHeight : "none",
+          };
+        });
+        if (!f) break;
+        if (seen.has(f.id)) break;
+        seen.add(f.id);
+        if (f.inFrame) continue;
+        expect(f.visible, f.id).toBe(true);
+        expect(f.outline, `focus outline: ${f.id}`).toBe(true);
+        expect(f.hidden, `hidden behind menu: ${f.id} -- on top: ${f.topEl}`).toBe(false);
+      }
+      expect(seen.size).toBeGreaterThan(5);
+    });
+  }
+
+  test("when I press Tab once on a page, then the first stop is the 'Skip to main content' link and it works", async ({ page }) => {
+    await page.goto("summer.html");
+    await page.keyboard.press("Tab");
+    const link = page.locator(":focus");
+    await expect(link).toHaveAttribute("href", "#main");
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/#main$/);
+  });
+});
+
+test("Text spacing: when letter, word and line spacing are increased (WCAG 1.4.12), then no page scrolls sideways", async ({ page }) => {
+  for (const file of BASE_PAGES) {
+    await page.goto(file);
+    await page.addStyleTag({ content: "* { line-height: 1.5 !important; letter-spacing: .12em !important; word-spacing: .16em !important; } p { margin-bottom: 2em !important; }" });
+    const scroll = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(scroll, file).toBeLessThanOrEqual(0);
+  }
 });

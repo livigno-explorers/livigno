@@ -40,11 +40,11 @@
       </ul>
     </nav>
       <span class="spacer"></span>
-      <form class="search js-only" role="search" action="summer.html" method="get">
+      <form class="search js-only" role="search" aria-label="Quick search" action="summer.html" method="get">
         <label class="visually-hidden" for="site-search">Search trails</label>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg>
         <input id="site-search" name="q" type="search" placeholder="Search trails">
-        <button type="submit" class="visually-hidden">Search</button>
+        <button type="submit" class="search-submit">Search</button>
       </form>
       <a class="icon-btn search-toggle js-only" href="summer.html#trail-search" aria-label="Search trails"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3a7 7 0 0 1 5.6 11.2l5.6 5.6-1.4 1.4-5.6-5.6A7 7 0 1 1 10 3zm0 2a5 5 0 1 0 0 10 5 5 0 0 0 0-10z"/></svg></a>
       <nav class="lang-switch" aria-label="Language"><a href="winter.html" hreflang="en" lang="en" aria-current="true">EN<span class="visually-hidden"> English</span></a><a href="winter-it.html" hreflang="it" lang="it">IT<span class="visually-hidden"> Italiano</span></a><a href="winter-de.html" hreflang="de" lang="de">DE<span class="visually-hidden"> Deutsch</span></a></nav>
@@ -87,7 +87,7 @@
 
       <section aria-labelledby="pass-title">
         <h2 id="pass-title">Ski pass options</h2>
-        <div class="table-wrap">
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Typical ski pass types">
           <table>
             <caption>Typical ski pass types</caption>
             <thead><tr><th scope="col">Pass</th><th scope="col">Good for</th></tr></thead>
@@ -161,6 +161,7 @@
         <h2>About this site</h2>
         <ul>
           <li><a href="sources.html">Sources &amp; image credits</a></li>
+          <li><a href="accessibility.html">Accessibility statement</a></li>
           <li><a href="plan.html#contact">Contact form</a></li>
           <li><a href="sitemap.xml">Sitemap (XML)</a></li>
         </ul>
